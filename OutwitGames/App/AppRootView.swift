@@ -7,39 +7,46 @@ struct AppRootView: View {
     @Bindable var coordinator = environment.coordinator
 
     NavigationStack(path: $coordinator.path) {
-      FoundationLandingView()
+      routeView(for: coordinator.root)
         .navigationDestination(for: AppRoute.self) { route in
-          PendingFeatureView(name: route.accessibilityName)
+          routeView(for: route)
         }
     }
     .sheet(item: $coordinator.sheet) { sheet in
-      PendingFeatureView(name: sheet.accessibilityName)
+      switch sheet {
+      case .profile:
+        PendingFeatureView(title: "screen.profile.title")
+      case .notificationSoftAsk:
+        PendingFeatureView(title: "screen.notifications.title")
+      }
     }
   }
-}
 
-private struct FoundationLandingView: View {
-  var body: some View {
-    VStack(spacing: 8) {
-      Text("Outwit Games")
-        .font(.largeTitle.bold())
-        .accessibilityIdentifier("app-title")
-
-      Text("iOS foundation ready")
-        .foregroundStyle(.secondary)
+  @ViewBuilder
+  private func routeView(for route: AppRoute) -> some View {
+    switch route {
+    case .language:
+      LanguageView(settings: environment.settings, coordinator: environment.coordinator)
+    case .onboarding:
+      PendingFeatureView(title: "screen.onboarding.title")
+    case .login:
+      PendingFeatureView(title: "screen.login.title")
+    case .feed:
+      PendingFeatureView(title: "screen.feed.title")
+    case .rewards:
+      PendingFeatureView(title: "screen.rewards.title")
     }
-    .padding()
   }
 }
 
 private struct PendingFeatureView: View {
-  let name: String
+  let title: LocalizedStringKey
 
   var body: some View {
     ContentUnavailableView(
-      name,
+      title,
       systemImage: "hammer",
-      description: Text("This feature will be added in its implementation checkpoint.")
+      description: Text("screen.pending.description")
     )
   }
 }

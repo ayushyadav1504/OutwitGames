@@ -1,0 +1,225 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "common.continue" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continue"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आगे बढ़ें"
+          }
+        }
+      }
+    },
+    "language.heading.english" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose your language"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose your language"
+          }
+        }
+      }
+    },
+    "language.heading.hindi" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अपनी भाषा चुनें"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अपनी भाषा चुनें"
+          }
+        }
+      }
+    },
+    "language.option.english.subtitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Play · Compete · Win"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Play · Compete · Win"
+          }
+        }
+      }
+    },
+    "language.option.english.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "English"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "English"
+          }
+        }
+      }
+    },
+    "language.option.hindi.subtitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "खेलें · मुकाबला करें · जीतें"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "खेलें · मुकाबला करें · जीतें"
+          }
+        }
+      }
+    },
+    "language.option.hindi.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "हिन्दी"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "हिन्दी"
+          }
+        }
+      }
+    },
+    "language.profile_hint" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Change anytime in Profile"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "प्रोफ़ाइल में कभी भी बदलें"
+          }
+        }
+      }
+    },
+    "language.selection.not_selected" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not selected"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "चयनित नहीं"
+          }
+        }
+      }
+    },
+    "language.selection.selected" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selected"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "चयनित"
+          }
+        }
+      }
+    },
+    "screen.feed.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Feed" } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "होम" } }
+      }
+    },
+    "screen.login.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Login" } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "लॉग इन" } }
+      }
+    },
+    "screen.notifications.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Notifications" } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "नोटिफ़िकेशन" } }
+      }
+    },
+    "screen.onboarding.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Welcome to Outwit" } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "Outwit में आपका स्वागत है" } }
+      }
+    },
+    "screen.pending.description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "This feature will be added in its implementation checkpoint." } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "यह सुविधा अपने इम्प्लीमेंटेशन चेकपॉइंट में जोड़ी जाएगी।" } }
+      }
+    },
+    "screen.profile.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Profile" } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "प्रोफ़ाइल" } }
+      }
+    },
+    "screen.rewards.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Rewards" } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "इनाम" } }
+      }
+    }
+  },
+  "version" : "1.0"
+}

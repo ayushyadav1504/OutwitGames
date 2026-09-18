@@ -13,9 +13,9 @@ struct OutwitGamesApp: App {
 
   var body: some Scene {
     WindowGroup {
-        
       AppRootView()
         .environment(environment)
+        .environment(\.locale, environment.settings.locale)
     }
   }
 }

@@ -8,25 +8,39 @@ struct AppCoordinatorTests {
   func navigationCommandsKeepTypedState() {
     let coordinator = AppCoordinator()
 
-    coordinator.push(.language)
-    coordinator.push(.onboarding)
-    coordinator.replaceTop(with: .login)
+    #expect(coordinator.root == .language)
 
-    #expect(coordinator.path == [.language, .login])
+    coordinator.push(.onboarding)
+    coordinator.push(.login)
+    coordinator.replaceTop(with: .rewards)
+
+    #expect(coordinator.path == [.onboarding, .rewards])
 
     coordinator.back()
 
-    #expect(coordinator.path == [.language])
+    #expect(coordinator.path == [.onboarding])
   }
 
   @Test
   func resettingNavigationDismissesPresentedSheet() {
-    let coordinator = AppCoordinator()
+    let coordinator = AppCoordinator(root: .onboarding)
+    coordinator.push(.login)
     coordinator.present(.profile)
 
     coordinator.reset(to: .feed)
 
-    #expect(coordinator.path == [.feed])
+    #expect(coordinator.root == .feed)
+    #expect(coordinator.path.isEmpty)
     #expect(coordinator.sheet == nil)
+  }
+
+  @Test
+  func replacingAnEmptyPathChangesTheRoot() {
+    let coordinator = AppCoordinator(root: .language)
+
+    coordinator.replaceTop(with: .onboarding)
+
+    #expect(coordinator.root == .onboarding)
+    #expect(coordinator.path.isEmpty)
   }
 }

@@ -3,22 +3,31 @@ import Observation
 @MainActor
 @Observable
 final class AppCoordinator {
+  private(set) var root: AppRoute
   var path: [AppRoute] = []
   var sheet: AppSheet?
+
+  init(root: AppRoute = .language) {
+    self.root = root
+  }
 
   func push(_ route: AppRoute) {
     path.append(route)
   }
 
   func replaceTop(with route: AppRoute) {
-    if !path.isEmpty {
-      path.removeLast()
+    guard !path.isEmpty else {
+      root = route
+      return
     }
+
+    path.removeLast()
     path.append(route)
   }
 
   func reset(to route: AppRoute) {
-    path = [route]
+    root = route
+    path.removeAll()
     sheet = nil
   }
 

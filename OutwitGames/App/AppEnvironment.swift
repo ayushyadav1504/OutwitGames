@@ -8,8 +8,12 @@ import Observation
 @Observable
 final class AppEnvironment {
   let coordinator: AppCoordinator
+  let settings: AppSettings
 
-  init(coordinator: AppCoordinator = AppCoordinator()) {
-    self.coordinator = coordinator
+  init(settings: AppSettings = AppSettings(), coordinator: AppCoordinator? = nil) {
+    self.settings = settings
+    self.coordinator = coordinator ?? AppCoordinator(
+      root: settings.language == nil ? .language : .onboarding
+    )
   }
 }
