@@ -14,11 +14,17 @@ struct AppSettingsTests {
     let settings = AppSettings(defaults: defaults)
     #expect(settings.language == nil)
     #expect(settings.locale.identifier == "en_IN")
+    #expect(!settings.hasSeenIntroduction)
+    #expect(!settings.isOnboardingComplete)
 
     settings.setLanguage(.hindi)
+    settings.markIntroductionSeen()
+    settings.markOnboardingComplete()
 
     let restoredSettings = AppSettings(defaults: defaults)
     #expect(restoredSettings.language == .hindi)
     #expect(restoredSettings.locale.identifier == "hi_IN")
+    #expect(restoredSettings.hasSeenIntroduction)
+    #expect(restoredSettings.isOnboardingComplete)
   }
 }

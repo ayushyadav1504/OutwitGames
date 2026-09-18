@@ -7,7 +7,7 @@ final class AppCoordinator {
   var path: [AppRoute] = []
   var sheet: AppSheet?
 
-  init(root: AppRoute = .language) {
+  init(root: AppRoute = .splash) {
     self.root = root
   }
 

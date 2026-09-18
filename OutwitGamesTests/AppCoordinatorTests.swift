@@ -8,7 +8,7 @@ struct AppCoordinatorTests {
   func navigationCommandsKeepTypedState() {
     let coordinator = AppCoordinator()
 
-    #expect(coordinator.root == .language)
+    #expect(coordinator.root == .splash)
 
     coordinator.push(.onboarding)
     coordinator.push(.login)

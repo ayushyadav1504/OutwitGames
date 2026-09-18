@@ -1,6 +1,20 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "common.loading" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Loading" } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "लोड हो रहा है" } }
+      }
+    },
+    "common.retry" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Retry" } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "फिर कोशिश करें" } }
+      }
+    },
     "common.continue" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -171,6 +185,300 @@
         }
       }
     },
+    "notifications.action.not_now" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Not now" } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "अभी नहीं" } }
+      }
+    },
+    "notifications.action.turn_on" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Turn on notifications" } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "नोटिफ़िकेशन चालू करें" } }
+      }
+    },
+    "notifications.body" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "We add games every week.\nNothing else — no spam." } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "हम हर हफ़्ते नए गेम जोड़ते हैं।\nबस इतना ही — कोई स्पैम नहीं।" } }
+      }
+    },
+    "notifications.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Know when new games land" } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "नए गेम आते ही जानें" } }
+      }
+    },
+    "onboarding.action.next" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Next" } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "आगे" } }
+      }
+    },
+    "onboarding.action.start" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Start playing" } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "खेलना शुरू करें" } }
+      }
+    },
+    "onboarding.challenge.card.action" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Beat it" } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "हराएँ" } }
+      }
+    },
+    "onboarding.challenge.card.beat" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Beat" } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "पार करें" } }
+      }
+    },
+    "onboarding.challenge.card.score" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "970" } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "970" } }
+      }
+    },
+    "onboarding.challenge.card.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Fruit Flash" } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "Fruit Flash" } }
+      }
+    },
+    "onboarding.challenges.accessibility" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Tutorial slide 1 of 3. Beat challenges. Earn coins. Every challenge has a score to beat." } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "ट्यूटोरियल स्लाइड 1 में से 3। चुनौतियों को हराएँ। कॉइन कमाएँ। हर चुनौती में पार करने के लिए एक स्कोर होता है।" } }
+      }
+    },
+    "onboarding.challenges.accent" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Earn coins" } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "कॉइन कमाएँ" } }
+      }
+    },
+    "onboarding.challenges.body" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Every challenge has a score to beat." } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "हर चुनौती में पार करने के लिए एक स्कोर होता है।" } }
+      }
+    },
+    "onboarding.challenges.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Beat challenges" } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "चुनौतियों को हराएँ" } }
+      }
+    },
+    "onboarding.header.balance" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "2,450" } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "2,450" } }
+      }
+    },
+    "onboarding.page.first" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Tutorial page 1 of 3" } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "ट्यूटोरियल पेज 1 में से 3" } }
+      }
+    },
+    "onboarding.page.second" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Tutorial page 2 of 3" } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "ट्यूटोरियल पेज 2 में से 3" } }
+      }
+    },
+    "onboarding.page.third" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Tutorial page 3 of 3" } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "ट्यूटोरियल पेज 3 में से 3" } }
+      }
+    },
+    "onboarding.rewards.accessibility" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Tutorial slide 2 of 3. Coins become cash. Collect coins. Cash out. Enjoy." } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "ट्यूटोरियल स्लाइड 2 में से 3। कॉइन को कैश में बदलें। कॉइन जमा करें। कैश आउट करें। आनंद लें।" } }
+      }
+    },
+    "onboarding.rewards.accent" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "cash" } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "कैश में बदलें" } }
+      }
+    },
+    "onboarding.rewards.amount.large" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "₹500" } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "₹500" } }
+      }
+    },
+    "onboarding.rewards.amount.medium" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "₹100" } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "₹100" } }
+      }
+    },
+    "onboarding.rewards.amount.small" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "₹25" } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "₹25" } }
+      }
+    },
+    "onboarding.rewards.body" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Collect coins. Cash out. Enjoy." } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "कॉइन जमा करें। कैश आउट करें। आनंद लें।" } }
+      }
+    },
+    "onboarding.rewards.coins.large" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "5,000 coins" } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "5,000 कॉइन" } }
+      }
+    },
+    "onboarding.rewards.coins.medium" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "1,000 coins" } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "1,000 कॉइन" } }
+      }
+    },
+    "onboarding.rewards.coins.small" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "250 coins" } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "250 कॉइन" } }
+      }
+    },
+    "onboarding.rewards.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Coins become" } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "कॉइन को" } }
+      }
+    },
+    "onboarding.swipe.accessibility" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Tutorial slide 3 of 3. Try again or swipe on. New challenges keep coming." } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "ट्यूटोरियल स्लाइड 3 में से 3। फिर कोशिश करें या आगे स्वाइप करें। नई चुनौतियाँ आती रहती हैं।" } }
+      }
+    },
+    "onboarding.swipe.accent" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "swipe on" } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "आगे स्वाइप करें" } }
+      }
+    },
+    "onboarding.swipe.body" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "New challenges keep coming." } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "नई चुनौतियाँ आती रहती हैं।" } }
+      }
+    },
+    "onboarding.swipe.card.beat" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Beat" } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "पार करें" } }
+      }
+    },
+    "onboarding.swipe.card.close" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "So close!" } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "बस थोड़ा बाकी!" } }
+      }
+    },
+    "onboarding.swipe.card.fruit" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Fruit Flash" } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "Fruit Flash" } }
+      }
+    },
+    "onboarding.swipe.card.play" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Play this" } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "इसे खेलें" } }
+      }
+    },
+    "onboarding.swipe.card.retry" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "One more chance" } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "एक और मौका" } }
+      }
+    },
+    "onboarding.swipe.card.score" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "888 / 970" } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "888 / 970" } }
+      }
+    },
+    "onboarding.swipe.card.target" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "650" } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "650" } }
+      }
+    },
+    "onboarding.swipe.card.traffic" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Traffic Tangle" } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "Traffic Tangle" } }
+      }
+    },
+    "onboarding.swipe.card.your_score" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Your score" } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "आपका स्कोर" } }
+      }
+    },
+    "onboarding.swipe.prefix" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "or" } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "या" } }
+      }
+    },
+    "onboarding.swipe.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Try again" } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "फिर कोशिश करें" } }
+      }
+    },
     "screen.feed.title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -218,6 +526,20 @@
       "localizations" : {
         "en" : { "stringUnit" : { "state" : "translated", "value" : "Rewards" } },
         "hi" : { "stringUnit" : { "state" : "translated", "value" : "इनाम" } }
+      }
+    },
+    "startup.brand_name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Outwit" } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "Outwit" } }
+      }
+    },
+    "startup.tagline" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Play · Compete · Win" } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "खेलें · मुकाबला करें · जीतें" } }
       }
     }
   },

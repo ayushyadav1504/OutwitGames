@@ -9,7 +9,22 @@ import SwiftUI
 
 @main
 struct OutwitGamesApp: App {
-  @State private var environment = AppEnvironment()
+  @State private var environment: AppEnvironment
+
+  init() {
+    #if DEBUG
+      if ProcessInfo.processInfo.arguments.contains("-ui-testing") {
+        _environment = State(
+          initialValue: AppEnvironment(
+            sessionBootstrapper: UITestSessionBootstrapper()
+          )
+        )
+        return
+      }
+    #endif
+
+    _environment = State(initialValue: AppEnvironment())
+  }
 
   var body: some Scene {
     WindowGroup {
@@ -19,3 +34,9 @@ struct OutwitGamesApp: App {
     }
   }
 }
+
+#if DEBUG
+  private nonisolated struct UITestSessionBootstrapper: SessionBootstrapping {
+    func establishSession() async throws -> Bool { true }
+  }
+#endif

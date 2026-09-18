@@ -25,10 +25,20 @@ struct AppRootView: View {
   @ViewBuilder
   private func routeView(for route: AppRoute) -> some View {
     switch route {
+    case .splash:
+      StartupView(
+        sessionBootstrapper: environment.sessionBootstrapper,
+        settings: environment.settings,
+        coordinator: environment.coordinator
+      )
     case .language:
       LanguageView(settings: environment.settings, coordinator: environment.coordinator)
     case .onboarding:
-      PendingFeatureView(title: "screen.onboarding.title")
+      OnboardingView(
+        settings: environment.settings,
+        notifications: environment.notificationPermissionRequester,
+        coordinator: environment.coordinator
+      )
     case .login:
       PendingFeatureView(title: "screen.login.title")
     case .feed:
