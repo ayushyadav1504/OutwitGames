@@ -13,6 +13,7 @@ struct OutwitGamesApp: App {
 
   var body: some Scene {
     WindowGroup {
+        
       AppRootView()
         .environment(environment)
     }
