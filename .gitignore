@@ -1,0 +1,21 @@
+.DS_Store
+
+# Xcode user data and build products
+DerivedData/
+build/
+*.xcuserstate
+xcuserdata/
+
+# Swift Package Manager checkouts and local workspace state
+.build/
+.swiftpm/
+Package.resolved
+
+# Local configuration and credentials
+*.xcconfig.local
+GoogleService-Info.plist
+Secrets.plist
+
+# Signing material
+*.p12
+*.mobileprovision

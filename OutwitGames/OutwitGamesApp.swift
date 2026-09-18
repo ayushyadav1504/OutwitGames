@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct OutwitGamesApp: App {
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-        }
+  @State private var environment = AppEnvironment()
+
+  var body: some Scene {
+    WindowGroup {
+      AppRootView()
+        .environment(environment)
     }
+  }
 }
