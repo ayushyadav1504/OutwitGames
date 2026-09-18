@@ -1,90 +1,82 @@
-# iOS configuration checklist
+# Outwit Games iOS configuration request
 
-This document lists the configuration needed to ship the native iOS app. It does not copy Android platform credentials into iOS.
+This is the complete list of external configuration that the iOS app team needs. Existing Android product/service values will be reused where they are platform-independent.
 
-> **Bundle identifier timing:** the current bundle identifier is temporarily `outwit.OutwitGames`. Wait for the final bundle identifier before creating production Firebase and AdMob iOS app registrations, unless recreating their configuration later is acceptable. Firebase treats the registered Apple bundle identifier as case-sensitive and it cannot be changed after registration.
+## Confirmed Apple application identity
 
-## Must be created specifically for iOS
+The signed App Store provisioning profile establishes these final values:
 
-### Apple Developer and App Store Connect
+- Bundle identifier: `club.outwit.games`
+- Apple Developer Team ID: `R4B78HKAFH`
+- Explicit application identifier: `R4B78HKAFH.club.outwit.games`
+- Apple App ID name: `Outwit Games Bundle`
+- App Store provisioning profile name: `Outwit Games App Store`
+- App Store provisioning profile UUID: `b519da3b-9d88-4ff0-b6a0-dfb094f0cda1`
+- Distribution certificate SHA-1: `24EE249FC396B4A62C9684559D90DADEF6813641`
+- Profile and distribution certificate expiry: August 31, 2027
+- Production APNs entitlement: enabled
 
-- Final explicit App ID / bundle identifier.
-- Apple Developer Team ID and the team that will sign the app.
-- App Store Connect app record and Apple app ID once the final bundle identifier is known.
-- Push Notifications capability on the iOS App ID.
-- APNs authentication key (`.p8`), Key ID, and Team ID. Store the `.p8` outside Git. One suitable APNs key may serve multiple apps on the same Apple team; it is not an Android key.
-- Production privacy policy URL and support URL for the App Store listing.
-- App privacy answers covering analytics, advertising, identifiers, diagnostics, and tracking used by the finished app.
-- The final wording for the App Tracking Transparency purpose message (`NSUserTrackingUsageDescription`) before tracking is enabled.
+The provisioning profile and distribution certificate are signing assets and must remain outside Git. The supplied `.cer` matches the certificate embedded in the profile, but manual distribution signing still requires its matching private key (normally installed from a password-protected `.p12`) or an Xcode-managed distribution identity.
 
-References: [Register with APNs](https://developer.apple.com/documentation/usernotifications/registering-your-app-with-apns), [APNs authentication keys](https://developer.apple.com/help/account/capabilities/communicate-with-apns-using-authentication-tokens), [tracking usage description](https://developer.apple.com/documentation/bundleresources/information-property-list/nsusertrackingusagedescription).
+## Please provide later
 
-### Firebase for Apple platforms
+### 1. Firebase for iOS
 
-- Register a new **Apple/iOS app** inside the intended Firebase project using the final iOS bundle identifier.
-- Download that registration's `GoogleService-Info.plist`.
-- Upload the Apple APNs authentication key to Firebase Cloud Messaging and record its Key ID and Apple Team ID.
-- Confirm whether development and production use separate Firebase projects. If they do, generate a separate iOS plist for each environment.
+- Add a new **Apple/iOS app** to the existing Outwit Firebase project with the case-sensitive bundle identifier `club.outwit.games`.
+- Provide the generated `GoogleService-Info.plist`.
+- For push notifications, connect the Apple APNs authentication key to Firebase Cloud Messaging. This requires the APNs `.p8` file, its Key ID, and the Apple Team ID. Keep the `.p8` file outside Git.
+- If development and production use separate Firebase projects, provide one iOS plist per environment.
 
-Do not use Android's `google-services.json`, Android package name, SHA fingerprints, or Android Firebase app ID. The Firebase project may be shared, but it must contain a distinct Apple app registration.
+The Firebase project may be the same project used by Android, but iOS must have its own app registration. Android's `google-services.json`, Android package name, SHA fingerprints, and Android Firebase app ID cannot be used by iOS.
 
-References: [Add Firebase to an Apple project](https://firebase.google.com/docs/ios/setup), [Firebase Cloud Messaging for Apple apps](https://firebase.google.com/docs/cloud-messaging/ios/get-started).
+References: [Firebase Apple setup](https://firebase.google.com/docs/ios/setup), [Firebase Cloud Messaging for Apple apps](https://firebase.google.com/docs/cloud-messaging/ios/get-started), [Apple APNs authentication keys](https://developer.apple.com/help/account/capabilities/communicate-with-apns-using-authentication-tokens).
 
-### Google Mobile Ads / AdMob
+### 2. Google Mobile Ads for iOS
 
-Create an **iOS app** in AdMob and provide:
+Create an **iOS app** in the existing AdMob account and provide:
 
-1. iOS AdMob app ID (`ca-app-pub-…~…`).
-2. iOS interstitial ad unit ID for the feed placement.
-3. iOS rewarded ad unit ID for the challenge multiplier placement.
-4. iOS rewarded ad unit ID for the challenge retry placement.
+- iOS AdMob app ID (`ca-app-pub-…~…`).
+- iOS interstitial ad unit ID for the feed placement.
+- iOS rewarded ad unit ID for the challenge multiplier placement.
+- iOS rewarded ad unit ID for the challenge retry placement.
 
-The Android AdMob app ID and all Android ad unit IDs are platform-specific and must not be used by the iOS app.
+Android's AdMob app ID and Android ad unit IDs are platform-specific and cannot be used by iOS.
 
-Development will use Google's official iOS test configuration:
+References: [Google Mobile Ads iOS quick start](https://developers.google.com/admob/ios/quick-start), [AdMob app setup](https://support.google.com/admob/answer/9989980).
+
+## Values used during development
+
+Until the production iOS AdMob identifiers are available, Debug builds will use Google's official iOS test values:
 
 - Test app ID: `ca-app-pub-3940256099942544~1458002511`
 - Test interstitial unit: `ca-app-pub-3940256099942544/4411468910`
 - Test rewarded unit: `ca-app-pub-3940256099942544/1712485313`
 
-Before release, also complete the AdMob app's privacy and messaging setup and confirm the consent regions that the app must support. The iOS target will receive `GADApplicationIdentifier` and Google's current `SKAdNetworkItems` list during the ads integration checkpoint.
+The same test rewarded unit is safe for both the multiplier and retry placements; the app will continue to distinguish those placements in its own analytics and reward flow.
 
-References: [Google Mobile Ads iOS quick start](https://developers.google.com/admob/ios/quick-start), [official iOS test ad units](https://developers.google.com/admob/ios/test-ads), [set up an AdMob app](https://support.google.com/admob/answer/9989980).
+Reference: [official iOS test ad units](https://developers.google.com/admob/ios/test-ads).
 
-### Meta App Events
+## Reuse from the Android product configuration
 
-- Add an iOS platform entry to the intended Meta app using the final iOS bundle identifier.
-- Configure the iPhone/iPad App Store ID after the App Store Connect record exists.
-- Confirm the Meta App ID and client token that the iOS app should use.
-- Confirm whether advertiser ID collection will be enabled after Apple tracking authorization.
+The iOS implementation will reuse these existing values and contracts:
 
-The same Meta app-level App ID and client token may be used when Android and iOS report into the same Meta app, but Android manifest entries and Android package registration are not iOS configuration. The iOS platform record and iOS property-list configuration must be created separately.
+- Development and production Outwit API base URLs.
+- Development and production Outwit WebSocket URLs.
+- Development and production hosted-game allowlist domains.
+- PostHog project token and host.
+- Meta App ID and client token, with an iOS platform entry for `club.outwit.games` added to the same Meta app.
+- Analytics event names and property schema.
+- Backend API/socket contracts, feature rules, economy rules, and ad-placement names.
 
-Reference: [Meta iOS SDK](https://github.com/facebook/facebook-ios-sdk).
+These values will be expressed in native iOS build configuration. The iOS project will not import Android JSON, XML, manifest, resource, or Gradle files.
 
-## Values that may be shared with Android
+## Files that must never be copied from Android
 
-These are service or backend values rather than Android platform credentials. Reuse is appropriate only after the service owner confirms that both apps should report to the same environment.
+- `google-services.json`
+- Android application/package ID
+- Android Firebase app ID or SHA fingerprints
+- Android AdMob app ID or ad unit IDs
+- Android signing keystore or signing properties
+- Android manifest metadata and Gradle configuration
 
-- PostHog project token and PostHog host, if iOS and Android should share one product analytics project.
-- Outwit API base URL for each environment.
-- Outwit WebSocket URL for each environment.
-- Allowlisted hosted-game domains for each environment.
-- Analytics event names and property schema, so cross-platform dashboards stay comparable.
-- Backend feature flags, economy rules, and ad-placement names.
-
-The iOS app will store environment values in iOS build configuration, not by importing Android JSON or Gradle files.
-
-## Backend confirmations needed for iOS
-
-- Confirm that guest login, OTP, profile, feed, rewards, challenge, and socket contracts accept an iOS device/platform value.
-- Confirm how the existing push-token endpoint distinguishes iOS Firebase/APNs tokens from Android FCM tokens.
-- Confirm that rewarded-ad server-side rules use the placement names `multiplier` and `retry` for iOS as well.
-- Confirm whether Apple receipt or App Store server configuration will be needed for any future in-app purchase flow.
-
-## Files and secrets policy
-
-- Never commit APNs `.p8` keys, signing certificates, provisioning profiles, private server keys, or service-account JSON.
-- `GoogleService-Info.plist` is iOS-specific service configuration. This repository currently ignores it, so each developer/CI environment must inject the correct file securely.
-- Public client configuration such as an AdMob app ID is not a server secret, but production identifiers should still be supplied through the app's environment configuration so test and production builds cannot be mixed.
-- No Android keystore, `google-services.json`, Android application ID, Android AdMob identifier, Android resource entry, or Gradle configuration belongs in the iOS target.
+The iOS repository will keep integration points ready, but Firebase, analytics SDKs, Meta, and production AdMob configuration will be added in their approved integration checkpoint. No empty SDK abstraction is added before that work exists.

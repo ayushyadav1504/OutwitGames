@@ -17,5 +17,6 @@ GoogleService-Info.plist
 Secrets.plist
 
 # Signing material
+*.cer
 *.p12
 *.mobileprovision
