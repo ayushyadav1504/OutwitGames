@@ -12,6 +12,7 @@ struct AppRootView: View {
           routeView(for: route)
         }
     }
+    .id(coordinator.rootRevision)
     .sheet(item: $coordinator.sheet) { sheet in
       switch sheet {
       case .profile:
@@ -40,7 +41,10 @@ struct AppRootView: View {
         coordinator: environment.coordinator
       )
     case .login:
-      PendingFeatureView(title: "screen.login.title")
+      LoginView(
+        authRepository: environment.authRepository,
+        coordinator: environment.coordinator
+      )
     case .feed:
       PendingFeatureView(title: "screen.feed.title")
     case .rewards:

@@ -32,6 +32,19 @@ struct AppCoordinatorTests {
     #expect(coordinator.root == .feed)
     #expect(coordinator.path.isEmpty)
     #expect(coordinator.sheet == nil)
+    #expect(coordinator.rootRevision == 1)
+  }
+
+  @Test
+  func loginRestartRebuildsTheFeedRoot() {
+    let coordinator = AppCoordinator(root: .feed)
+    coordinator.push(.login)
+
+    coordinator.restartAfterLogin()
+
+    #expect(coordinator.root == .feed)
+    #expect(coordinator.path.isEmpty)
+    #expect(coordinator.rootRevision == 1)
   }
 
   @Test

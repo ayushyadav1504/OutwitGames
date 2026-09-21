@@ -38,4 +38,29 @@ final class OutwitGamesUITests: XCTestCase {
     continueButton.tap()
     XCTAssertTrue(app.buttons["notifications-turn-on"].waitForExistence(timeout: 2))
   }
+
+  @MainActor
+  func testPhoneLoginAdvancesThroughOTPToFeed() {
+    let app = XCUIApplication()
+    app.launchArguments += [
+      "-ui-testing-login",
+      "-AppleLanguages", "(en)",
+    ]
+    app.launch()
+
+    let phoneField = app.textFields["login-phone-field"]
+    XCTAssertTrue(phoneField.waitForExistence(timeout: 5))
+    phoneField.tap()
+    phoneField.typeText("9876543210")
+
+    let primaryAction = app.buttons["login-primary-action"]
+    primaryAction.tap()
+
+    let otpField = app.textFields["login-otp-field"]
+    XCTAssertTrue(otpField.waitForExistence(timeout: 2))
+    otpField.tap()
+    otpField.typeText("2468")
+
+    XCTAssertTrue(app.staticTexts["Feed"].waitForExistence(timeout: 5))
+  }
 }

@@ -13,6 +13,7 @@ enum OutwitSpacing {
 }
 
 enum OutwitRadius {
+  static let input: CGFloat = 14
   static let button: CGFloat = 16
   static let card: CGFloat = 20
 }

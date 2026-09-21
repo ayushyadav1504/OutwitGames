@@ -4,6 +4,7 @@ import Observation
 @Observable
 final class AppCoordinator {
   private(set) var root: AppRoute
+  private(set) var rootRevision = 0
   var path: [AppRoute] = []
   var sheet: AppSheet?
 
@@ -27,8 +28,13 @@ final class AppCoordinator {
 
   func reset(to route: AppRoute) {
     root = route
+    rootRevision += 1
     path.removeAll()
     sheet = nil
+  }
+
+  func restartAfterLogin() {
+    reset(to: .feed)
   }
 
   func back() {

@@ -14,6 +14,7 @@ final class AppEnvironment {
   let tokenStore: any TokenStore
   let apiClient: any APIClient
   let sessionBootstrapper: any SessionBootstrapping
+  let authRepository: any AuthRepository
   let notificationPermissionRequester: any NotificationPermissionRequesting
 
   init(
@@ -23,6 +24,7 @@ final class AppEnvironment {
     tokenStore: (any TokenStore)? = nil,
     apiClient: (any APIClient)? = nil,
     sessionBootstrapper: (any SessionBootstrapping)? = nil,
+    authRepository: (any AuthRepository)? = nil,
     notificationPermissionRequester: (any NotificationPermissionRequesting)? = nil
   ) {
     let resolvedCoordinator =
@@ -46,6 +48,7 @@ final class AppEnvironment {
           }
         }
       )
+    let device = DeviceSnapshot.current()
 
     self.settings = settings
     self.coordinator = resolvedCoordinator
@@ -57,7 +60,14 @@ final class AppEnvironment {
       ?? SessionBootstrapper(
         apiClient: resolvedAPIClient,
         tokenStore: resolvedTokenStore,
-        device: DeviceSnapshot.current()
+        device: device
+      )
+    self.authRepository =
+      authRepository
+      ?? DefaultAuthRepository(
+        apiClient: resolvedAPIClient,
+        tokenStore: resolvedTokenStore,
+        device: device
       )
     self.notificationPermissionRequester =
       notificationPermissionRequester ?? NotificationPermissionRequester()

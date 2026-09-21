@@ -32,6 +32,174 @@
         }
       }
     },
+    "common.ok" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "OK" } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "ठीक है" } }
+      }
+    },
+    "forbidden" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "You don't have permission to do that." } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "आपको यह करने की अनुमति नहीं है।" } }
+      }
+    },
+    "invalid_otp" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Incorrect OTP. Please try again." } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "गलत OTP, फिर से कोशिश करें।" } }
+      }
+    },
+    "invalid_phone" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Please enter a valid 10-digit mobile number." } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "कृपया सही 10 अंकों का मोबाइल नंबर डालें।" } }
+      }
+    },
+    "login.change_number" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Change number" } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "नंबर बदलें" } }
+      }
+    },
+    "login.error.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Couldn't continue" } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "आगे नहीं बढ़ सके" } }
+      }
+    },
+    "login.otp.accessibility" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Four-digit verification code" } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "चार अंकों का सत्यापन कोड" } }
+      }
+    },
+    "login.otp.resend" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Resend OTP" } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "OTP दोबारा भेजें" } }
+      }
+    },
+    "login.otp.resend_in" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Resend OTP in" } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "OTP दोबारा भेजें" } }
+      }
+    },
+    "login.otp.sent" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Code sent to" } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "कोड इस नंबर पर भेजा गया" } }
+      }
+    },
+    "login.otp.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Enter your 4-digit code" } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "अपना 4 अंकों का कोड दर्ज करें" } }
+      }
+    },
+    "login.phone.accessibility" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Indian mobile number" } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "भारतीय मोबाइल नंबर" } }
+      }
+    },
+    "login.phone.description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "We only use it to secure your Outwit progress." } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "हम इसका उपयोग केवल आपकी Outwit प्रगति सुरक्षित रखने के लिए करते हैं।" } }
+      }
+    },
+    "login.phone.placeholder" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "9876543210" } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "9876543210" } }
+      }
+    },
+    "login.phone.safety" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "We never share your number or send spam." } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "हम आपका नंबर साझा नहीं करते और स्पैम नहीं भेजते।" } }
+      }
+    },
+    "login.phone.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Enter your phone number" } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "अपना फ़ोन नंबर दर्ज करें" } }
+      }
+    },
+    "login.phone_taken.message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "This phone is already registered. Continue with your older account? Your current guest progress will be lost." } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "यह फ़ोन पहले से रजिस्टर्ड है। क्या आप अपने पुराने अकाउंट से जारी रखना चाहते हैं? आपकी मौजूदा गेस्ट प्रगति खो जाएगी।" } }
+      }
+    },
+    "login.phone_taken.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Phone already registered" } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "फ़ोन पहले से रजिस्टर्ड है" } }
+      }
+    },
+    "login.use_new_number" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Use another number" } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "दूसरा नंबर इस्तेमाल करें" } }
+      }
+    },
+    "login.verify" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Verify" } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "सत्यापित करें" } }
+      }
+    },
+    "network_timeout" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "The request timed out. Please try again." } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "अनुरोध का समय समाप्त हो गया। कृपया फिर कोशिश करें।" } }
+      }
+    },
+    "no_internet" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Check your internet connection and try again." } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "अपना इंटरनेट कनेक्शन जाँचें और फिर कोशिश करें।" } }
+      }
+    },
+    "something_wrong" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Something went wrong. Please try again." } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "कुछ गलत हो गया। कृपया फिर कोशिश करें।" } }
+      }
+    },
+    "unauthorized" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Your session has expired. Please try again." } },
+        "hi" : { "stringUnit" : { "state" : "translated", "value" : "आपका सेशन समाप्त हो गया है। कृपया फिर कोशिश करें।" } }
+      }
+    },
     "language.heading.english" : {
       "extractionState" : "manual",
       "localizations" : {
