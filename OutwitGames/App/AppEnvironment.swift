@@ -15,6 +15,8 @@ final class AppEnvironment {
   let apiClient: any APIClient
   let sessionBootstrapper: any SessionBootstrapping
   let authRepository: any AuthRepository
+  let feedRepository: any FeedRepository
+  let homeRepository: any HomeRepository
   let notificationPermissionRequester: any NotificationPermissionRequesting
 
   init(
@@ -25,6 +27,8 @@ final class AppEnvironment {
     apiClient: (any APIClient)? = nil,
     sessionBootstrapper: (any SessionBootstrapping)? = nil,
     authRepository: (any AuthRepository)? = nil,
+    feedRepository: (any FeedRepository)? = nil,
+    homeRepository: (any HomeRepository)? = nil,
     notificationPermissionRequester: (any NotificationPermissionRequesting)? = nil
   ) {
     let resolvedCoordinator =
@@ -69,6 +73,12 @@ final class AppEnvironment {
         tokenStore: resolvedTokenStore,
         device: device
       )
+    self.feedRepository =
+      feedRepository
+      ?? DefaultFeedRepository(apiClient: resolvedAPIClient, tokenStore: resolvedTokenStore)
+    self.homeRepository =
+      homeRepository
+      ?? DefaultHomeRepository(apiClient: resolvedAPIClient, tokenStore: resolvedTokenStore)
     self.notificationPermissionRequester =
       notificationPermissionRequester ?? NotificationPermissionRequester()
   }

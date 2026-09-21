@@ -61,6 +61,33 @@ final class OutwitGamesUITests: XCTestCase {
     otpField.tap()
     otpField.typeText("2468")
 
-    XCTAssertTrue(app.staticTexts["Feed"].waitForExistence(timeout: 5))
+    XCTAssertTrue(app.otherElements["feed-card-101"].waitForExistence(timeout: 5))
+  }
+
+  @MainActor
+  func testFeedPagesAndOpensChallengePlaceholder() {
+    let app = XCUIApplication()
+    app.launchArguments += [
+      "-ui-testing-feed",
+      "-AppleLanguages", "(en)",
+    ]
+    app.launch()
+
+    let firstCard = app.otherElements["feed-card-101"]
+    XCTAssertTrue(firstCard.waitForExistence(timeout: 5))
+    XCTAssertTrue(app.buttons["feed-coin-balance"].exists)
+
+    firstCard.swipeUp()
+    let secondCard = app.otherElements["feed-card-102"]
+    XCTAssertTrue(secondCard.waitForExistence(timeout: 3))
+
+    let startButton = secondCard.buttons["feed-start-challenge"]
+    startButton.tap()
+
+    let pendingFeature = app.descendants(matching: .any)["pending-feature"]
+    if !pendingFeature.waitForExistence(timeout: 2) {
+      startButton.tap()
+    }
+    XCTAssertTrue(pendingFeature.waitForExistence(timeout: 3))
   }
 }

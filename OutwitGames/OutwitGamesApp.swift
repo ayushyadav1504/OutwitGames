@@ -13,12 +13,30 @@ struct OutwitGamesApp: App {
 
   init() {
     #if DEBUG
+      if ProcessInfo.processInfo.arguments.contains("-ui-testing-feed") {
+        let tokenStore = UITestTokenStore()
+        _environment = State(
+          initialValue: AppEnvironment(
+            coordinator: AppCoordinator(root: .feed),
+            tokenStore: tokenStore,
+            sessionBootstrapper: UITestSessionBootstrapper(),
+            feedRepository: UITestFeedRepository(),
+            homeRepository: UITestHomeRepository()
+          )
+        )
+        return
+      }
+
       if ProcessInfo.processInfo.arguments.contains("-ui-testing-login") {
+        let tokenStore = UITestTokenStore()
         _environment = State(
           initialValue: AppEnvironment(
             coordinator: AppCoordinator(root: .login),
+            tokenStore: tokenStore,
             sessionBootstrapper: UITestSessionBootstrapper(),
-            authRepository: UITestAuthRepository()
+            authRepository: UITestAuthRepository(),
+            feedRepository: UITestFeedRepository(),
+            homeRepository: UITestHomeRepository()
           )
         )
         return
@@ -66,6 +84,64 @@ struct OutwitGamesApp: App {
 
     func loginToExistingAccount(phone: String, code: String) async throws -> AuthUser {
       try await verifyOTP(phone: phone, code: code)
+    }
+  }
+
+  private actor UITestTokenStore: TokenStore {
+    private var session = AuthSession(
+      user: AuthUser(
+        id: 91,
+        kind: "registered",
+        username: "Swift Player",
+        phone: "+919876543210",
+        externalID: "ui-test-91"
+      ),
+      apiToken: "ui-api-token",
+      socketToken: "ui-socket-token",
+      refreshToken: "ui-refresh-token"
+    )
+
+    func loadSession() -> AuthSession? { session }
+    func saveSession(_ session: AuthSession) { self.session = session }
+    func saveUser(_ user: AuthUser) { session.user = user }
+    func clear() {}
+  }
+
+  private nonisolated struct UITestFeedRepository: FeedRepository {
+    func load(count: Int, forceRefresh: Bool, cursor: String?) async throws -> FeedPage {
+      FeedPage(
+        challenges: [
+          previewChallenge(id: 101, title: "Quick Maths", target: 12),
+          previewChallenge(id: 102, title: "Memory Match", target: 8),
+        ],
+        milestone: nil,
+        nextCursor: nil
+      )
+    }
+
+    private func previewChallenge(id: Int, title: String, target: Int) -> FeedChallenge {
+      FeedChallenge(
+        id: id,
+        gameKey: "ui-test-\(id)",
+        title: title,
+        objective: ChallengeObjective(
+          raw: ["type": .string("min_score"), "target": .number(Double(target))]
+        ),
+        difficulty: 1,
+        rewardCoins: 5,
+        bundle: FeedGameBundle(
+          version: "1",
+          url: "https://games.example.com/ui-test/",
+          entry: "index.html"
+        ),
+        media: []
+      )
+    }
+  }
+
+  private nonisolated struct UITestHomeRepository: HomeRepository {
+    func loadWallet(forceRefresh: Bool) async throws -> WalletBalance {
+      WalletBalance(coins: 240, elixir: 0)
     }
   }
 #endif

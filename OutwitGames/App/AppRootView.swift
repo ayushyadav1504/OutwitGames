@@ -46,9 +46,16 @@ struct AppRootView: View {
         coordinator: environment.coordinator
       )
     case .feed:
-      PendingFeatureView(title: "screen.feed.title")
+      FeedView(
+        feedRepository: environment.feedRepository,
+        homeRepository: environment.homeRepository,
+        tokenStore: environment.tokenStore,
+        coordinator: environment.coordinator
+      )
     case .rewards:
       PendingFeatureView(title: "screen.rewards.title")
+    case .challengePreview:
+      PendingFeatureView(title: "screen.challenge_preview.title")
     }
   }
 }
@@ -62,6 +69,7 @@ private struct PendingFeatureView: View {
       systemImage: "hammer",
       description: Text("screen.pending.description")
     )
+    .accessibilityIdentifier("pending-feature")
   }
 }
 

@@ -1,19 +1,8 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "common.loading" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Loading" } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "लोड हो रहा है" } }
-      }
-    },
-    "common.retry" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Retry" } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "फिर कोशिश करें" } }
-      }
+    "" : {
+
     },
     "common.continue" : {
       "extractionState" : "manual",
@@ -32,172 +21,480 @@
         }
       }
     },
+    "common.loading" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Loading"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लोड हो रहा है"
+          }
+        }
+      }
+    },
     "common.ok" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "OK" } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "ठीक है" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ठीक है"
+          }
+        }
+      }
+    },
+    "common.retry" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Retry"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फिर कोशिश करें"
+          }
+        }
+      }
+    },
+    "feed.end.message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You have played every challenge we have right now. New challenges land soon — check back!"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अभी के सारे चैलेंज आप खेल चुके हैं। नए चैलेंज जल्द आ रहे हैं — फिर देखें!"
+          }
+        }
+      }
+    },
+    "feed.end.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "That's all for now!"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "बस, अभी इतने ही!"
+          }
+        }
+      }
+    },
+    "feed.game_unavailable" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This game bundle has not been published yet."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "यह गेम अभी प्रकाशित नहीं हुआ है।"
+          }
+        }
+      }
+    },
+    "feed.loading" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Loading challenges…"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "चैलेंज लोड हो रहे हैं…"
+          }
+        }
+      }
+    },
+    "feed.objective.and" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " and "
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " और "
+          }
+        }
+      }
+    },
+    "feed.objective.clear_all" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clear the board."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "बोर्ड साफ़ करें।"
+          }
+        }
+      }
+    },
+    "feed.objective.collect" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reach @value @metric."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "@value @metric तक पहुंचें।"
+          }
+        }
+      }
+    },
+    "feed.objective.generic" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Complete the objective."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लक्ष्य पूरा करें।"
+          }
+        }
+      }
+    },
+    "feed.objective.min_score" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Score @value points."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "@value पॉइंट स्कोर करें।"
+          }
+        }
+      }
+    },
+    "feed.objective.move_limit" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Finish in @value moves."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "@value चालों में पूरा करें।"
+          }
+        }
+      }
+    },
+    "feed.objective.or" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " or "
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " या "
+          }
+        }
+      }
+    },
+    "feed.objective.survive" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Survive for @value."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "@value तक टिके रहें।"
+          }
+        }
+      }
+    },
+    "feed.objective.time_limit" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beat the clock: @value."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "समय को हराएं: @value।"
+          }
+        }
+      }
+    },
+    "feed.objective.timed_collect" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reach @value @metric within @time."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "@time के भीतर @value @metric तक पहुंचें।"
+          }
+        }
+      }
+    },
+    "feed.objective.timed_score" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Score @value points within @time."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "@time के भीतर @value पॉइंट स्कोर करें।"
+          }
+        }
+      }
+    },
+    "feed.profile" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profile"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "प्रोफ़ाइल"
+          }
+        }
+      }
+    },
+    "feed.redeem_coins" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Redeem coins"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कॉइन रिडीम करें"
+          }
+        }
+      }
+    },
+    "feed.refresh" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Refresh"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "रीफ़्रेश करें"
+          }
+        }
+      }
+    },
+    "feed.start_challenge" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start challenge"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "चैलेंज शुरू करें"
+          }
+        }
+      }
+    },
+    "feed.swipe_up" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Swipe up for the next challenge"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अगले चैलेंज के लिए ऊपर स्वाइप करें"
+          }
+        }
+      }
+    },
+    "feed.unavailable.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Game unavailable"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "गेम उपलब्ध नहीं है"
+          }
+        }
+      }
+    },
+    "feed.unlock_reward" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unlock the reward."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इनाम अनलॉक करें।"
+          }
+        }
       }
     },
     "forbidden" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "You don't have permission to do that." } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "आपको यह करने की अनुमति नहीं है।" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You don't have permission to do that."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आपको यह करने की अनुमति नहीं है।"
+          }
+        }
       }
     },
     "invalid_otp" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Incorrect OTP. Please try again." } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "गलत OTP, फिर से कोशिश करें।" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Incorrect OTP. Please try again."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "गलत OTP, फिर से कोशिश करें।"
+          }
+        }
       }
     },
     "invalid_phone" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Please enter a valid 10-digit mobile number." } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "कृपया सही 10 अंकों का मोबाइल नंबर डालें।" } }
-      }
-    },
-    "login.change_number" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Change number" } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "नंबर बदलें" } }
-      }
-    },
-    "login.error.title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Couldn't continue" } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "आगे नहीं बढ़ सके" } }
-      }
-    },
-    "login.otp.accessibility" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Four-digit verification code" } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "चार अंकों का सत्यापन कोड" } }
-      }
-    },
-    "login.otp.resend" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Resend OTP" } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "OTP दोबारा भेजें" } }
-      }
-    },
-    "login.otp.resend_in" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Resend OTP in" } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "OTP दोबारा भेजें" } }
-      }
-    },
-    "login.otp.sent" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Code sent to" } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "कोड इस नंबर पर भेजा गया" } }
-      }
-    },
-    "login.otp.title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Enter your 4-digit code" } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "अपना 4 अंकों का कोड दर्ज करें" } }
-      }
-    },
-    "login.phone.accessibility" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Indian mobile number" } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "भारतीय मोबाइल नंबर" } }
-      }
-    },
-    "login.phone.description" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "We only use it to secure your Outwit progress." } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "हम इसका उपयोग केवल आपकी Outwit प्रगति सुरक्षित रखने के लिए करते हैं।" } }
-      }
-    },
-    "login.phone.placeholder" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "9876543210" } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "9876543210" } }
-      }
-    },
-    "login.phone.safety" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "We never share your number or send spam." } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "हम आपका नंबर साझा नहीं करते और स्पैम नहीं भेजते।" } }
-      }
-    },
-    "login.phone.title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Enter your phone number" } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "अपना फ़ोन नंबर दर्ज करें" } }
-      }
-    },
-    "login.phone_taken.message" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "This phone is already registered. Continue with your older account? Your current guest progress will be lost." } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "यह फ़ोन पहले से रजिस्टर्ड है। क्या आप अपने पुराने अकाउंट से जारी रखना चाहते हैं? आपकी मौजूदा गेस्ट प्रगति खो जाएगी।" } }
-      }
-    },
-    "login.phone_taken.title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Phone already registered" } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "फ़ोन पहले से रजिस्टर्ड है" } }
-      }
-    },
-    "login.use_new_number" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Use another number" } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "दूसरा नंबर इस्तेमाल करें" } }
-      }
-    },
-    "login.verify" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Verify" } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "सत्यापित करें" } }
-      }
-    },
-    "network_timeout" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "The request timed out. Please try again." } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "अनुरोध का समय समाप्त हो गया। कृपया फिर कोशिश करें।" } }
-      }
-    },
-    "no_internet" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Check your internet connection and try again." } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "अपना इंटरनेट कनेक्शन जाँचें और फिर कोशिश करें।" } }
-      }
-    },
-    "something_wrong" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Something went wrong. Please try again." } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "कुछ गलत हो गया। कृपया फिर कोशिश करें।" } }
-      }
-    },
-    "unauthorized" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Your session has expired. Please try again." } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "आपका सेशन समाप्त हो गया है। कृपया फिर कोशिश करें।" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please enter a valid 10-digit mobile number."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कृपया सही 10 अंकों का मोबाइल नंबर डालें।"
+          }
+        }
       }
     },
     "language.heading.english" : {
@@ -353,361 +650,1228 @@
         }
       }
     },
+    "login.change_number" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Change number"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "नंबर बदलें"
+          }
+        }
+      }
+    },
+    "login.error.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Couldn't continue"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आगे नहीं बढ़ सके"
+          }
+        }
+      }
+    },
+    "login.otp.accessibility" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Four-digit verification code"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "चार अंकों का सत्यापन कोड"
+          }
+        }
+      }
+    },
+    "login.otp.resend" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Resend OTP"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OTP दोबारा भेजें"
+          }
+        }
+      }
+    },
+    "login.otp.resend_in" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Resend OTP in"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OTP दोबारा भेजें"
+          }
+        }
+      }
+    },
+    "login.otp.sent" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Code sent to"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कोड इस नंबर पर भेजा गया"
+          }
+        }
+      }
+    },
+    "login.otp.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter your 4-digit code"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अपना 4 अंकों का कोड दर्ज करें"
+          }
+        }
+      }
+    },
+    "login.phone_taken.message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This phone is already registered. Continue with your older account? Your current guest progress will be lost."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "यह फ़ोन पहले से रजिस्टर्ड है। क्या आप अपने पुराने अकाउंट से जारी रखना चाहते हैं? आपकी मौजूदा गेस्ट प्रगति खो जाएगी।"
+          }
+        }
+      }
+    },
+    "login.phone_taken.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Phone already registered"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़ोन पहले से रजिस्टर्ड है"
+          }
+        }
+      }
+    },
+    "login.phone.accessibility" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Indian mobile number"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "भारतीय मोबाइल नंबर"
+          }
+        }
+      }
+    },
+    "login.phone.description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "We only use it to secure your Outwit progress."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "हम इसका उपयोग केवल आपकी Outwit प्रगति सुरक्षित रखने के लिए करते हैं।"
+          }
+        }
+      }
+    },
+    "login.phone.placeholder" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "9876543210"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "9876543210"
+          }
+        }
+      }
+    },
+    "login.phone.safety" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "We never share your number or send spam."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "हम आपका नंबर साझा नहीं करते और स्पैम नहीं भेजते।"
+          }
+        }
+      }
+    },
+    "login.phone.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter your phone number"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अपना फ़ोन नंबर दर्ज करें"
+          }
+        }
+      }
+    },
+    "login.use_new_number" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Use another number"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "दूसरा नंबर इस्तेमाल करें"
+          }
+        }
+      }
+    },
+    "login.verify" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verify"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सत्यापित करें"
+          }
+        }
+      }
+    },
+    "network_timeout" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The request timed out. Please try again."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अनुरोध का समय समाप्त हो गया। कृपया फिर कोशिश करें।"
+          }
+        }
+      }
+    },
+    "no_internet" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Check your internet connection and try again."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अपना इंटरनेट कनेक्शन जाँचें और फिर कोशिश करें।"
+          }
+        }
+      }
+    },
     "notifications.action.not_now" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Not now" } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "अभी नहीं" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not now"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अभी नहीं"
+          }
+        }
       }
     },
     "notifications.action.turn_on" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Turn on notifications" } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "नोटिफ़िकेशन चालू करें" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Turn on notifications"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "नोटिफ़िकेशन चालू करें"
+          }
+        }
       }
     },
     "notifications.body" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "We add games every week.\nNothing else — no spam." } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "हम हर हफ़्ते नए गेम जोड़ते हैं।\nबस इतना ही — कोई स्पैम नहीं।" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "We add games every week.\nNothing else — no spam."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "हम हर हफ़्ते नए गेम जोड़ते हैं।\nबस इतना ही — कोई स्पैम नहीं।"
+          }
+        }
       }
     },
     "notifications.title" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Know when new games land" } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "नए गेम आते ही जानें" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Know when new games land"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "नए गेम आते ही जानें"
+          }
+        }
       }
     },
     "onboarding.action.next" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Next" } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "आगे" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Next"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आगे"
+          }
+        }
       }
     },
     "onboarding.action.start" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Start playing" } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "खेलना शुरू करें" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start playing"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "खेलना शुरू करें"
+          }
+        }
       }
     },
     "onboarding.challenge.card.action" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Beat it" } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "हराएँ" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beat it"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "हराएँ"
+          }
+        }
       }
     },
     "onboarding.challenge.card.beat" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Beat" } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "पार करें" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beat"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पार करें"
+          }
+        }
       }
     },
     "onboarding.challenge.card.score" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "970" } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "970" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "970"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "970"
+          }
+        }
       }
     },
     "onboarding.challenge.card.title" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Fruit Flash" } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "Fruit Flash" } }
-      }
-    },
-    "onboarding.challenges.accessibility" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Tutorial slide 1 of 3. Beat challenges. Earn coins. Every challenge has a score to beat." } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "ट्यूटोरियल स्लाइड 1 में से 3। चुनौतियों को हराएँ। कॉइन कमाएँ। हर चुनौती में पार करने के लिए एक स्कोर होता है।" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fruit Flash"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fruit Flash"
+          }
+        }
       }
     },
     "onboarding.challenges.accent" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Earn coins" } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "कॉइन कमाएँ" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Earn coins"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कॉइन कमाएँ"
+          }
+        }
+      }
+    },
+    "onboarding.challenges.accessibility" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tutorial slide 1 of 3. Beat challenges. Earn coins. Every challenge has a score to beat."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ट्यूटोरियल स्लाइड 1 में से 3। चुनौतियों को हराएँ। कॉइन कमाएँ। हर चुनौती में पार करने के लिए एक स्कोर होता है।"
+          }
+        }
       }
     },
     "onboarding.challenges.body" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Every challenge has a score to beat." } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "हर चुनौती में पार करने के लिए एक स्कोर होता है।" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Every challenge has a score to beat."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "हर चुनौती में पार करने के लिए एक स्कोर होता है।"
+          }
+        }
       }
     },
     "onboarding.challenges.title" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Beat challenges" } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "चुनौतियों को हराएँ" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beat challenges"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "चुनौतियों को हराएँ"
+          }
+        }
       }
     },
     "onboarding.header.balance" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "2,450" } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "2,450" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "2,450"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "2,450"
+          }
+        }
       }
     },
     "onboarding.page.first" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Tutorial page 1 of 3" } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "ट्यूटोरियल पेज 1 में से 3" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tutorial page 1 of 3"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ट्यूटोरियल पेज 1 में से 3"
+          }
+        }
       }
     },
     "onboarding.page.second" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Tutorial page 2 of 3" } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "ट्यूटोरियल पेज 2 में से 3" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tutorial page 2 of 3"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ट्यूटोरियल पेज 2 में से 3"
+          }
+        }
       }
     },
     "onboarding.page.third" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Tutorial page 3 of 3" } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "ट्यूटोरियल पेज 3 में से 3" } }
-      }
-    },
-    "onboarding.rewards.accessibility" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Tutorial slide 2 of 3. Coins become cash. Collect coins. Cash out. Enjoy." } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "ट्यूटोरियल स्लाइड 2 में से 3। कॉइन को कैश में बदलें। कॉइन जमा करें। कैश आउट करें। आनंद लें।" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tutorial page 3 of 3"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ट्यूटोरियल पेज 3 में से 3"
+          }
+        }
       }
     },
     "onboarding.rewards.accent" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "cash" } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "कैश में बदलें" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "cash"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कैश में बदलें"
+          }
+        }
+      }
+    },
+    "onboarding.rewards.accessibility" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tutorial slide 2 of 3. Coins become cash. Collect coins. Cash out. Enjoy."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ट्यूटोरियल स्लाइड 2 में से 3। कॉइन को कैश में बदलें। कॉइन जमा करें। कैश आउट करें। आनंद लें।"
+          }
+        }
       }
     },
     "onboarding.rewards.amount.large" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "₹500" } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "₹500" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "₹500"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "₹500"
+          }
+        }
       }
     },
     "onboarding.rewards.amount.medium" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "₹100" } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "₹100" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "₹100"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "₹100"
+          }
+        }
       }
     },
     "onboarding.rewards.amount.small" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "₹25" } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "₹25" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "₹25"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "₹25"
+          }
+        }
       }
     },
     "onboarding.rewards.body" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Collect coins. Cash out. Enjoy." } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "कॉइन जमा करें। कैश आउट करें। आनंद लें।" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Collect coins. Cash out. Enjoy."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कॉइन जमा करें। कैश आउट करें। आनंद लें।"
+          }
+        }
       }
     },
     "onboarding.rewards.coins.large" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "5,000 coins" } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "5,000 कॉइन" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "5,000 coins"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "5,000 कॉइन"
+          }
+        }
       }
     },
     "onboarding.rewards.coins.medium" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "1,000 coins" } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "1,000 कॉइन" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1,000 coins"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1,000 कॉइन"
+          }
+        }
       }
     },
     "onboarding.rewards.coins.small" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "250 coins" } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "250 कॉइन" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "250 coins"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "250 कॉइन"
+          }
+        }
       }
     },
     "onboarding.rewards.title" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Coins become" } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "कॉइन को" } }
-      }
-    },
-    "onboarding.swipe.accessibility" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Tutorial slide 3 of 3. Try again or swipe on. New challenges keep coming." } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "ट्यूटोरियल स्लाइड 3 में से 3। फिर कोशिश करें या आगे स्वाइप करें। नई चुनौतियाँ आती रहती हैं।" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Coins become"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कॉइन को"
+          }
+        }
       }
     },
     "onboarding.swipe.accent" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "swipe on" } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "आगे स्वाइप करें" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "swipe on"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आगे स्वाइप करें"
+          }
+        }
+      }
+    },
+    "onboarding.swipe.accessibility" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tutorial slide 3 of 3. Try again or swipe on. New challenges keep coming."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ट्यूटोरियल स्लाइड 3 में से 3। फिर कोशिश करें या आगे स्वाइप करें। नई चुनौतियाँ आती रहती हैं।"
+          }
+        }
       }
     },
     "onboarding.swipe.body" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "New challenges keep coming." } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "नई चुनौतियाँ आती रहती हैं।" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New challenges keep coming."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "नई चुनौतियाँ आती रहती हैं।"
+          }
+        }
       }
     },
     "onboarding.swipe.card.beat" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Beat" } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "पार करें" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beat"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पार करें"
+          }
+        }
       }
     },
     "onboarding.swipe.card.close" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "So close!" } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "बस थोड़ा बाकी!" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "So close!"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "बस थोड़ा बाकी!"
+          }
+        }
       }
     },
     "onboarding.swipe.card.fruit" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Fruit Flash" } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "Fruit Flash" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fruit Flash"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fruit Flash"
+          }
+        }
       }
     },
     "onboarding.swipe.card.play" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Play this" } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "इसे खेलें" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Play this"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इसे खेलें"
+          }
+        }
       }
     },
     "onboarding.swipe.card.retry" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "One more chance" } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "एक और मौका" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "One more chance"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "एक और मौका"
+          }
+        }
       }
     },
     "onboarding.swipe.card.score" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "888 / 970" } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "888 / 970" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "888 / 970"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "888 / 970"
+          }
+        }
       }
     },
     "onboarding.swipe.card.target" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "650" } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "650" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "650"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "650"
+          }
+        }
       }
     },
     "onboarding.swipe.card.traffic" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Traffic Tangle" } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "Traffic Tangle" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Traffic Tangle"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Traffic Tangle"
+          }
+        }
       }
     },
     "onboarding.swipe.card.your_score" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Your score" } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "आपका स्कोर" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your score"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आपका स्कोर"
+          }
+        }
       }
     },
     "onboarding.swipe.prefix" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "or" } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "या" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "or"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "या"
+          }
+        }
       }
     },
     "onboarding.swipe.title" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Try again" } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "फिर कोशिश करें" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Try again"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फिर कोशिश करें"
+          }
+        }
+      }
+    },
+    "screen.challenge_preview.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Challenge gameplay"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "चैलेंज गेमप्ले"
+          }
+        }
       }
     },
     "screen.feed.title" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Feed" } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "होम" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Feed"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "होम"
+          }
+        }
       }
     },
     "screen.login.title" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Login" } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "लॉग इन" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Login"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लॉग इन"
+          }
+        }
       }
     },
     "screen.notifications.title" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Notifications" } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "नोटिफ़िकेशन" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notifications"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "नोटिफ़िकेशन"
+          }
+        }
       }
     },
     "screen.onboarding.title" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Welcome to Outwit" } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "Outwit में आपका स्वागत है" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Welcome to Outwit"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Outwit में आपका स्वागत है"
+          }
+        }
       }
     },
     "screen.pending.description" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "This feature will be added in its implementation checkpoint." } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "यह सुविधा अपने इम्प्लीमेंटेशन चेकपॉइंट में जोड़ी जाएगी।" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This feature will be added in its implementation checkpoint."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "यह सुविधा अपने इम्प्लीमेंटेशन चेकपॉइंट में जोड़ी जाएगी।"
+          }
+        }
       }
     },
     "screen.profile.title" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Profile" } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "प्रोफ़ाइल" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profile"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "प्रोफ़ाइल"
+          }
+        }
       }
     },
     "screen.rewards.title" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Rewards" } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "इनाम" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rewards"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इनाम"
+          }
+        }
+      }
+    },
+    "something_wrong" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Something went wrong. Please try again."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कुछ गलत हो गया। कृपया फिर कोशिश करें।"
+          }
+        }
       }
     },
     "startup.brand_name" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Outwit" } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "Outwit" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Outwit"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Outwit"
+          }
+        }
       }
     },
     "startup.tagline" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Play · Compete · Win" } },
-        "hi" : { "stringUnit" : { "state" : "translated", "value" : "खेलें · मुकाबला करें · जीतें" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Play · Compete · Win"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "खेलें · मुकाबला करें · जीतें"
+          }
+        }
+      }
+    },
+    "unauthorized" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your session has expired. Please try again."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आपका सेशन समाप्त हो गया है। कृपया फिर कोशिश करें।"
+          }
+        }
       }
     }
   },

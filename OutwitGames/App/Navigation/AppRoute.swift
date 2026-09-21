@@ -5,4 +5,5 @@ enum AppRoute: String, Codable, Hashable, Sendable {
   case login
   case feed
   case rewards
+  case challengePreview
 }
