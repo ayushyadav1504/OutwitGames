@@ -10,6 +10,9 @@ struct ChallengeView: View {
   init(
     challenge: FeedChallenge,
     repository: any ChallengeRepository,
+    rewardedAds: any RewardedAdServing,
+    tokenStore: any TokenStore,
+    analytics: any AnalyticsTracking,
     configuration: AppConfiguration,
     orientationController: any ChallengeOrientationControlling,
     coordinator: AppCoordinator
@@ -19,6 +22,9 @@ struct ChallengeView: View {
     _viewModel = State(
       initialValue: ChallengeViewModel(
         repository: repository,
+        rewardedAds: rewardedAds,
+        tokenStore: tokenStore,
+        analytics: analytics,
         coordinator: coordinator,
         challenge: challenge
       )
@@ -36,7 +42,7 @@ struct ChallengeView: View {
       case .failed(let messageKey):
         ChallengeErrorView(
           messageKey: messageKey,
-          onRetry: { Task { await viewModel.retry() } },
+          onRetry: { Task { await viewModel.retryStart() } },
           onClose: viewModel.close
         )
       case .playing(let launch):
@@ -63,6 +69,18 @@ struct ChallengeView: View {
       },
       message: { Text("challenge.exit.message") }
     )
+    .alert(
+      "challenge.reward.error.title",
+      isPresented: actionErrorBinding,
+      actions: {
+        Button("common.ok", role: .cancel, action: viewModel.dismissActionError)
+      },
+      message: {
+        if let key = viewModel.actionErrorKey {
+          Text(LocalizedStringKey(key))
+        }
+      }
+    )
   }
 
   private func gameplay(launch: ChallengeLaunch, outcome: ChallengeOutcome?) -> some View {
@@ -84,6 +102,7 @@ struct ChallengeView: View {
           onPageLoadFailed: viewModel.pageLoadFailed,
           onHUDEvent: viewModel.handle
         )
+        .id(launch.gameID)
 
         if viewModel.isPageLoading {
           ZStack {
@@ -96,7 +115,15 @@ struct ChallengeView: View {
         }
 
         if let outcome {
-          ChallengeResultView(outcome: outcome, onContinue: viewModel.close)
+          ChallengeResultView(
+            outcome: outcome,
+            multiplier: viewModel.multiplier,
+            actionState: viewModel.resultActionState,
+            onRetry: viewModel.retryWithRewardedAd,
+            onMultiply: viewModel.multiplyReward,
+            onContinue: viewModel.close,
+            onWheelSettled: viewModel.multiplierDidSettle
+          )
         }
       }
     }
@@ -107,6 +134,13 @@ struct ChallengeView: View {
     Binding(
       get: { viewModel.isExitPromptVisible },
       set: { if !$0 { viewModel.dismissExitPrompt() } }
+    )
+  }
+
+  private var actionErrorBinding: Binding<Bool> {
+    Binding(
+      get: { viewModel.actionErrorKey != nil },
+      set: { if !$0 { viewModel.dismissActionError() } }
     )
   }
 }

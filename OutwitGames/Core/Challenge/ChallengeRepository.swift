@@ -3,6 +3,12 @@ import Foundation
 nonisolated protocol ChallengeRepository: Sendable {
   func start(_ challenge: FeedChallenge) async throws -> ChallengeLaunch
   func waitForEnd(of launch: ChallengeLaunch) async throws -> ChallengeOutcome
+  func createAdSession(
+    for launch: ChallengeLaunch,
+    action: ChallengeAdAction
+  ) async throws -> ChallengeAdSession
+  func amplifyWin(_ launch: ChallengeLaunch, nonce: String) async throws -> ChallengeSpin
+  func retry(_ launch: ChallengeLaunch, nonce: String) async throws -> ChallengeLaunch
 }
 
 nonisolated final class DefaultChallengeRepository: ChallengeRepository, Sendable {
@@ -44,6 +50,38 @@ nonisolated final class DefaultChallengeRepository: ChallengeRepository, Sendabl
       payload,
       fallbackRewardCoins: launch.rewardCoins,
       fallbackTarget: launch.objective["target"]?.intValue
+    )
+  }
+
+  func createAdSession(
+    for launch: ChallengeLaunch,
+    action: ChallengeAdAction
+  ) async throws -> ChallengeAdSession {
+    try ChallengeRewardMapper.adSession(
+      await realtime.createAdSession(gameID: launch.gameID, action: action)
+    )
+  }
+
+  func amplifyWin(_ launch: ChallengeLaunch, nonce: String) async throws -> ChallengeSpin {
+    try ChallengeRewardMapper.spin(
+      await realtime.spin(gameID: launch.gameID, nonce: nonce)
+    )
+  }
+
+  func retry(_ launch: ChallengeLaunch, nonce: String) async throws -> ChallengeLaunch {
+    let started = try ChallengeRewardMapper.startedChallenge(
+      await realtime.retry(gameID: launch.gameID, nonce: nonce)
+    )
+    let challengeConfiguration = try await realtime.queryChallenge(gameID: started.gameID)
+    return ChallengeLaunch(
+      challenge: launch.challenge,
+      gameID: started.gameID,
+      socketToken: started.socketToken,
+      socketURL: configuration.socketURL,
+      entryURL: try Self.entryURL(launch.entryURL, sessionID: started.gameID),
+      objective: challengeConfiguration.objective,
+      level: challengeConfiguration.level,
+      rewardCoins: started.rewardCoins > 0 ? started.rewardCoins : launch.rewardCoins
     )
   }
 

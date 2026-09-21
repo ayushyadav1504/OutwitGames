@@ -19,6 +19,9 @@ final class AppEnvironment {
   let homeRepository: any HomeRepository
   let socketSession: any SocketSession
   let challengeRepository: any ChallengeRepository
+  let adConsentService: any AdConsentServicing
+  let rewardedAdService: any RewardedAdServing
+  let analytics: any AnalyticsTracking
   let challengeOrientationController: any ChallengeOrientationControlling
   let notificationPermissionRequester: any NotificationPermissionRequesting
 
@@ -34,6 +37,9 @@ final class AppEnvironment {
     homeRepository: (any HomeRepository)? = nil,
     socketSession: (any SocketSession)? = nil,
     challengeRepository: (any ChallengeRepository)? = nil,
+    adConsentService: (any AdConsentServicing)? = nil,
+    rewardedAdService: (any RewardedAdServing)? = nil,
+    analytics: (any AnalyticsTracking)? = nil,
     challengeOrientationController: (any ChallengeOrientationControlling)? = nil,
     notificationPermissionRequester: (any NotificationPermissionRequesting)? = nil
   ) {
@@ -65,6 +71,18 @@ final class AppEnvironment {
         endpoint: configuration.socketURL,
         tokenStore: resolvedTokenStore
       )
+    let resolvedConsent = adConsentService ?? GoogleAdConsentService()
+    let resolvedRewardedAds: any RewardedAdServing
+    if let rewardedAdService {
+      resolvedRewardedAds = rewardedAdService
+    } else if let adsConfiguration = GoogleMobileAdsConfiguration.bundled() {
+      resolvedRewardedAds = GoogleRewardedAdService(
+        configuration: adsConfiguration,
+        consent: resolvedConsent
+      )
+    } else {
+      resolvedRewardedAds = UnavailableRewardedAdService()
+    }
 
     self.settings = settings
     self.coordinator = resolvedCoordinator
@@ -92,6 +110,9 @@ final class AppEnvironment {
       homeRepository
       ?? DefaultHomeRepository(apiClient: resolvedAPIClient, tokenStore: resolvedTokenStore)
     self.socketSession = resolvedSocketSession
+    self.adConsentService = resolvedConsent
+    self.rewardedAdService = resolvedRewardedAds
+    self.analytics = analytics ?? OSLogAnalyticsTracker()
     self.challengeRepository =
       challengeRepository
       ?? DefaultChallengeRepository(

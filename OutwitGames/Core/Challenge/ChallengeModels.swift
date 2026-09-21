@@ -39,3 +39,24 @@ nonisolated struct ChallengeOutcome: Equatable, Sendable {
 
   var totalCoins: Int { coinsEarned + milestoneCoins }
 }
+
+nonisolated enum ChallengeAdAction: String, Sendable {
+  case spin
+  case retry
+}
+
+nonisolated struct ChallengeAdSession: Equatable, Sendable {
+  let nonce: String
+}
+
+nonisolated struct ChallengeSpin: Equatable, Sendable {
+  let selectedSegmentKey: String
+  let rewardCoins: Int
+  let segments: [ChallengeWheelSegment]
+}
+
+nonisolated struct ChallengeWheelSegment: Equatable, Sendable {
+  let key: String
+  let label: String
+  let colorHex: String
+}

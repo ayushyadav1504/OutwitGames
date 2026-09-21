@@ -23,7 +23,10 @@ struct OutwitGamesApp: App {
             sessionBootstrapper: UITestSessionBootstrapper(),
             feedRepository: UITestFeedRepository(),
             homeRepository: UITestHomeRepository(),
-            socketSession: UnavailableSocketSession()
+            socketSession: UnavailableSocketSession(),
+            adConsentService: PermissiveAdConsentService(),
+            rewardedAdService: UnavailableRewardedAdService(),
+            analytics: NoOpAnalyticsTracker()
           )
         )
         return
@@ -39,7 +42,10 @@ struct OutwitGamesApp: App {
             authRepository: UITestAuthRepository(),
             feedRepository: UITestFeedRepository(),
             homeRepository: UITestHomeRepository(),
-            socketSession: UnavailableSocketSession()
+            socketSession: UnavailableSocketSession(),
+            adConsentService: PermissiveAdConsentService(),
+            rewardedAdService: UnavailableRewardedAdService(),
+            analytics: NoOpAnalyticsTracker()
           )
         )
         return
@@ -49,7 +55,10 @@ struct OutwitGamesApp: App {
         _environment = State(
           initialValue: AppEnvironment(
             sessionBootstrapper: UITestSessionBootstrapper(),
-            socketSession: UnavailableSocketSession()
+            socketSession: UnavailableSocketSession(),
+            adConsentService: PermissiveAdConsentService(),
+            rewardedAdService: UnavailableRewardedAdService(),
+            analytics: NoOpAnalyticsTracker()
           )
         )
         return

@@ -17,7 +17,7 @@ struct AppRootView: View {
     .sheet(item: $coordinator.sheet) { sheet in
       switch sheet {
       case .profile:
-        PendingFeatureView(title: "screen.profile.title")
+        ProfilePlaceholderView(consent: environment.adConsentService)
       case .notificationSoftAsk:
         PendingFeatureView(title: "screen.notifications.title")
       }
@@ -27,6 +27,10 @@ struct AppRootView: View {
       await environment.socketSession.setForeground(
         AppSocketLifecyclePolicy.keepsConnection(for: scenePhase)
       )
+    }
+    .task {
+      await environment.adConsentService.prepare()
+      await environment.rewardedAdService.initialize()
     }
     .onChange(of: scenePhase) { _, phase in
       Task {
@@ -72,11 +76,38 @@ struct AppRootView: View {
       ChallengeView(
         challenge: challenge,
         repository: environment.challengeRepository,
+        rewardedAds: environment.rewardedAdService,
+        tokenStore: environment.tokenStore,
+        analytics: environment.analytics,
         configuration: environment.configuration,
         orientationController: environment.challengeOrientationController,
         coordinator: environment.coordinator
       )
     }
+  }
+}
+
+private struct ProfilePlaceholderView: View {
+  let consent: any AdConsentServicing
+  @State private var privacyOptionsRequired = false
+
+  var body: some View {
+    VStack(spacing: OutwitSpacing.x4) {
+      ContentUnavailableView(
+        "screen.profile.title",
+        systemImage: "person.crop.circle",
+        description: Text("screen.pending.description")
+      )
+      if privacyOptionsRequired {
+        Button("privacy.options") {
+          Task { try? await consent.presentPrivacyOptions() }
+        }
+        .buttonStyle(.outwitPrimary)
+        .frame(maxWidth: 320)
+      }
+    }
+    .padding(OutwitSpacing.pageGutter)
+    .task { privacyOptionsRequired = consent.isPrivacyOptionsRequired }
   }
 }
 

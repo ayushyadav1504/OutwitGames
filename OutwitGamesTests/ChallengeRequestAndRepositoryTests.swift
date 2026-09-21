@@ -145,4 +145,19 @@ private actor ChallengeRealtimeStub: ChallengeRealtimeService {
   func waitForEnd(gameID: String) async throws -> [String: JSONValue] {
     throw AppError.server()
   }
+
+  func createAdSession(
+    gameID: String,
+    action: ChallengeAdAction
+  ) async throws -> [String: JSONValue] {
+    throw AppError.server()
+  }
+
+  func spin(gameID: String, nonce: String) async throws -> [String: JSONValue] {
+    throw AppError.server()
+  }
+
+  func retry(gameID: String, nonce: String) async throws -> [String: JSONValue] {
+    throw AppError.server()
+  }
 }

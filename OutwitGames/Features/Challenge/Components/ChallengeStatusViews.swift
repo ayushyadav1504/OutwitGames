@@ -67,47 +67,146 @@ struct ChallengeErrorView: View {
 
 struct ChallengeResultView: View {
   let outcome: ChallengeOutcome
+  let multiplier: ChallengeMultiplierViewData?
+  let actionState: ChallengeResultActionState
+  let onRetry: () -> Void
+  let onMultiply: () -> Void
   let onContinue: () -> Void
+  let onWheelSettled: () -> Void
 
   var body: some View {
     ZStack {
-      Color.black.opacity(0.82)
-      VStack(spacing: OutwitSpacing.x4) {
-        Image(systemName: outcome.won ? "trophy.fill" : "flag.checkered")
-          .font(.system(size: 56, weight: .bold))
-          .foregroundStyle(outcome.won ? .yellow : .white)
-
-        Text(outcome.won ? "challenge.result.won" : "challenge.result.complete")
-          .font(OutwitTypography.headlineLarge)
-          .foregroundStyle(.white)
-          .multilineTextAlignment(.center)
-
-        if let score = outcome.score {
-          VStack(spacing: OutwitSpacing.x1) {
-            Text("challenge.result.score")
-              .font(OutwitTypography.bodySmall)
-              .foregroundStyle(.white.opacity(0.72))
-            Text(score.formatted())
-              .font(OutwitTypography.headlineLarge)
-              .foregroundStyle(.white)
-          }
-        }
-
-        if outcome.totalCoins > 0 {
-          Label(outcome.totalCoins.formatted(), systemImage: "circle.fill")
-            .font(OutwitTypography.headlineSmall)
-            .symbolRenderingMode(.palette)
-            .foregroundStyle(.white, .yellow)
-            .accessibilityLabel("challenge.result.coins")
-        }
-
-        Button("common.continue", action: onContinue)
-          .buttonStyle(.outwitPrimary)
-          .frame(maxWidth: 320)
-          .padding(.top, OutwitSpacing.x2)
+      OutwitColors.softWhite.ignoresSafeArea()
+      if let multiplier {
+        ChallengeMultiplierView(
+          data: multiplier,
+          onContinue: onContinue,
+          onSettled: onWheelSettled
+        )
+      } else {
+        ChallengeResultSummary(
+          outcome: outcome,
+          actionState: actionState,
+          onRetry: onRetry,
+          onMultiply: onMultiply,
+          onContinue: onContinue
+        )
       }
-      .padding(OutwitSpacing.x6)
     }
     .accessibilityIdentifier("challenge-result")
+  }
+}
+
+private struct ChallengeResultSummary: View {
+  let outcome: ChallengeOutcome
+  let actionState: ChallengeResultActionState
+  let onRetry: () -> Void
+  let onMultiply: () -> Void
+  let onContinue: () -> Void
+
+  var body: some View {
+    ScrollView {
+      VStack(spacing: OutwitSpacing.x6) {
+        Spacer(minLength: OutwitSpacing.x6)
+        Image(systemName: outcome.won ? "trophy.fill" : "flag.checkered")
+          .font(.system(size: 58, weight: .bold))
+          .foregroundStyle(outcome.won ? .yellow : OutwitColors.action)
+          .symbolEffect(.bounce, value: outcome.won)
+
+        Text(outcome.won ? "challenge.result.won" : "challenge.result.near_miss")
+          .font(OutwitTypography.headlineLarge)
+          .foregroundStyle(OutwitColors.ink)
+          .multilineTextAlignment(.center)
+
+        resultCard
+
+        VStack(spacing: OutwitSpacing.x3) {
+          if outcome.won {
+            rewardedButton(
+              title: "challenge.result.add_bonus",
+              isBusy: actionState == .multiplying,
+              action: onMultiply
+            )
+            Button("challenge.result.collect", action: onContinue)
+              .font(OutwitTypography.label)
+              .foregroundStyle(OutwitColors.action)
+          } else {
+            rewardedButton(
+              title: "challenge.result.retry_ad",
+              isBusy: actionState == .retrying,
+              action: onRetry
+            )
+            Button("challenge.result.home", action: onContinue)
+              .font(OutwitTypography.label)
+              .foregroundStyle(OutwitColors.action)
+          }
+        }
+        .frame(maxWidth: 340)
+        Spacer(minLength: OutwitSpacing.x6)
+      }
+      .padding(OutwitSpacing.pageGutter)
+      .frame(maxWidth: .infinity)
+    }
+  }
+
+  private var resultCard: some View {
+    VStack(spacing: OutwitSpacing.x3) {
+      if let score = outcome.score {
+        HStack(alignment: .firstTextBaseline, spacing: OutwitSpacing.x2) {
+          Text("challenge.result.score")
+            .font(OutwitTypography.body)
+            .foregroundStyle(OutwitColors.mutedInk)
+          Text(score.formatted())
+            .font(OutwitTypography.headlineLarge)
+            .foregroundStyle(OutwitColors.ink)
+          if let target = outcome.target {
+            Text("/ \(target.formatted())")
+              .font(OutwitTypography.headlineSmall)
+              .foregroundStyle(OutwitColors.mutedInk)
+          }
+        }
+      }
+
+      if outcome.won, outcome.totalCoins > 0 {
+        HStack(spacing: OutwitSpacing.x2) {
+          Image("TutorialCoin")
+            .resizable()
+            .scaledToFit()
+            .frame(width: 36, height: 36)
+          Text(outcome.totalCoins, format: .number)
+            .font(OutwitTypography.headlineLarge)
+            .foregroundStyle(OutwitColors.ink)
+        }
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel("challenge.result.coins")
+      }
+    }
+    .padding(OutwitSpacing.x6)
+    .frame(maxWidth: 340)
+    .background(.white, in: RoundedRectangle(cornerRadius: 24, style: .continuous))
+    .overlay(
+      RoundedRectangle(cornerRadius: 24, style: .continuous)
+        .stroke(OutwitColors.paleBorder, lineWidth: 1)
+    )
+  }
+
+  private func rewardedButton(
+    title: LocalizedStringKey,
+    isBusy: Bool,
+    action: @escaping () -> Void
+  ) -> some View {
+    Button(action: action) {
+      HStack(spacing: OutwitSpacing.x2) {
+        if isBusy {
+          ProgressView().tint(.white)
+        } else {
+          Image(systemName: "play.rectangle.fill")
+        }
+        Text(title)
+      }
+      .frame(maxWidth: .infinity)
+    }
+    .buttonStyle(.outwitPrimary)
+    .disabled(actionState != .idle)
   }
 }

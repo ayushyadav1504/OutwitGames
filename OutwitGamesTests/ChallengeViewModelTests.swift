@@ -13,6 +13,9 @@ struct ChallengeViewModelTests {
     coordinator.push(.challenge(launch.challenge))
     let viewModel = ChallengeViewModel(
       repository: repository,
+      rewardedAds: TestRewardedAdService(),
+      tokenStore: TestChallengeTokenStore(),
+      analytics: NoOpAnalyticsTracker(),
       coordinator: coordinator,
       challenge: launch.challenge
     )
@@ -54,6 +57,9 @@ struct ChallengeViewModelTests {
     let coordinator = AppCoordinator(root: .feed)
     let viewModel = ChallengeViewModel(
       repository: repository,
+      rewardedAds: TestRewardedAdService(),
+      tokenStore: TestChallengeTokenStore(),
+      analytics: NoOpAnalyticsTracker(),
       coordinator: coordinator,
       challenge: launch.challenge
     )
@@ -61,7 +67,7 @@ struct ChallengeViewModelTests {
     await viewModel.start()
     #expect(viewModel.state == .failed(messageKey: "network_timeout"))
 
-    await viewModel.retry()
+    await viewModel.retryStart()
     #expect(viewModel.state == .playing(launch))
     viewModel.cancel()
   }
@@ -123,6 +129,21 @@ private actor ControllableChallengeRepository: ChallengeRepository {
     throw CancellationError()
   }
 
+  func createAdSession(
+    for launch: ChallengeLaunch,
+    action: ChallengeAdAction
+  ) async throws -> ChallengeAdSession {
+    ChallengeAdSession(nonce: "test-nonce")
+  }
+
+  func amplifyWin(_ launch: ChallengeLaunch, nonce: String) async throws -> ChallengeSpin {
+    throw AppError.server()
+  }
+
+  func retry(_ launch: ChallengeLaunch, nonce: String) async throws -> ChallengeLaunch {
+    launch
+  }
+
   func finish(with outcome: ChallengeOutcome) {
     continuation.yield(outcome)
     continuation.finish()
@@ -147,4 +168,57 @@ private actor RetryChallengeRepository: ChallengeRepository {
     try await Task.sleep(for: .seconds(30))
     throw CancellationError()
   }
+
+  func createAdSession(
+    for launch: ChallengeLaunch,
+    action: ChallengeAdAction
+  ) async throws -> ChallengeAdSession {
+    throw AppError.server()
+  }
+
+  func amplifyWin(_ launch: ChallengeLaunch, nonce: String) async throws -> ChallengeSpin {
+    throw AppError.server()
+  }
+
+  func retry(_ launch: ChallengeLaunch, nonce: String) async throws -> ChallengeLaunch {
+    throw AppError.server()
+  }
+}
+
+@MainActor
+private final class TestRewardedAdService: RewardedAdServing {
+  func initialize() async {}
+  func load(_ placement: RewardedAdPlacement) async {}
+
+  func show(
+    _ placement: RewardedAdPlacement,
+    userID: String,
+    customData: String
+  ) async -> RewardedAdOutcome {
+    .earned
+  }
+}
+
+private actor TestChallengeTokenStore: TokenStore {
+  private var session: AuthSession? = AuthSession(
+    user: AuthUser(
+      id: 1,
+      kind: "registered",
+      username: "player",
+      phone: "",
+      externalID: "player-1"
+    ),
+    apiToken: "api",
+    socketToken: "socket",
+    refreshToken: "refresh"
+  )
+
+  func loadSession() -> AuthSession? { session }
+  func saveSession(_ session: AuthSession) { self.session = session }
+  func saveUser(_ user: AuthUser) {
+    guard var current = session else { return }
+    current.user = user
+    session = current
+  }
+  func clear() { session = nil }
 }
