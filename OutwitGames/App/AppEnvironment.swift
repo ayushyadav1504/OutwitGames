@@ -17,6 +17,9 @@ final class AppEnvironment {
   let authRepository: any AuthRepository
   let feedRepository: any FeedRepository
   let homeRepository: any HomeRepository
+  let socketSession: any SocketSession
+  let challengeRepository: any ChallengeRepository
+  let challengeOrientationController: any ChallengeOrientationControlling
   let notificationPermissionRequester: any NotificationPermissionRequesting
 
   init(
@@ -29,6 +32,9 @@ final class AppEnvironment {
     authRepository: (any AuthRepository)? = nil,
     feedRepository: (any FeedRepository)? = nil,
     homeRepository: (any HomeRepository)? = nil,
+    socketSession: (any SocketSession)? = nil,
+    challengeRepository: (any ChallengeRepository)? = nil,
+    challengeOrientationController: (any ChallengeOrientationControlling)? = nil,
     notificationPermissionRequester: (any NotificationPermissionRequesting)? = nil
   ) {
     let resolvedCoordinator =
@@ -53,6 +59,12 @@ final class AppEnvironment {
         }
       )
     let device = DeviceSnapshot.current()
+    let resolvedSocketSession =
+      socketSession
+      ?? AppSocketSession(
+        endpoint: configuration.socketURL,
+        tokenStore: resolvedTokenStore
+      )
 
     self.settings = settings
     self.coordinator = resolvedCoordinator
@@ -79,6 +91,16 @@ final class AppEnvironment {
     self.homeRepository =
       homeRepository
       ?? DefaultHomeRepository(apiClient: resolvedAPIClient, tokenStore: resolvedTokenStore)
+    self.socketSession = resolvedSocketSession
+    self.challengeRepository =
+      challengeRepository
+      ?? DefaultChallengeRepository(
+        apiClient: resolvedAPIClient,
+        realtime: DefaultChallengeRealtimeService(socketSession: resolvedSocketSession),
+        configuration: configuration
+      )
+    self.challengeOrientationController =
+      challengeOrientationController ?? AppOrientationController.shared
     self.notificationPermissionRequester =
       notificationPermissionRequester ?? NotificationPermissionRequester()
   }

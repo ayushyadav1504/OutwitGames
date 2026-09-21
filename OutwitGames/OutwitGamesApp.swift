@@ -9,6 +9,7 @@ import SwiftUI
 
 @main
 struct OutwitGamesApp: App {
+  @UIApplicationDelegateAdaptor(OutwitAppDelegate.self) private var appDelegate
   @State private var environment: AppEnvironment
 
   init() {
@@ -21,7 +22,8 @@ struct OutwitGamesApp: App {
             tokenStore: tokenStore,
             sessionBootstrapper: UITestSessionBootstrapper(),
             feedRepository: UITestFeedRepository(),
-            homeRepository: UITestHomeRepository()
+            homeRepository: UITestHomeRepository(),
+            socketSession: UnavailableSocketSession()
           )
         )
         return
@@ -36,7 +38,8 @@ struct OutwitGamesApp: App {
             sessionBootstrapper: UITestSessionBootstrapper(),
             authRepository: UITestAuthRepository(),
             feedRepository: UITestFeedRepository(),
-            homeRepository: UITestHomeRepository()
+            homeRepository: UITestHomeRepository(),
+            socketSession: UnavailableSocketSession()
           )
         )
         return
@@ -45,7 +48,8 @@ struct OutwitGamesApp: App {
       if ProcessInfo.processInfo.arguments.contains("-ui-testing") {
         _environment = State(
           initialValue: AppEnvironment(
-            sessionBootstrapper: UITestSessionBootstrapper()
+            sessionBootstrapper: UITestSessionBootstrapper(),
+            socketSession: UnavailableSocketSession()
           )
         )
         return

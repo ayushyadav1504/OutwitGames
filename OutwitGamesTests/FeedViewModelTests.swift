@@ -81,7 +81,7 @@ struct FeedViewModelTests {
 
     context.coordinator.back()
     context.viewModel.start(challenge(id: 1))
-    #expect(context.coordinator.path == [.challengePreview])
+    #expect(context.coordinator.path == [.challenge(challenge(id: 1))])
     #expect(await context.feed.loadCalls.count == 1)
   }
 

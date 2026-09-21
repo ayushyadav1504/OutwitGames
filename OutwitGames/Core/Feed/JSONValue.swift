@@ -1,7 +1,7 @@
 import Foundation
 
 /// A concurrency-safe representation of backend JSON whose shape is defined by a game.
-nonisolated enum JSONValue: Codable, Equatable, Sendable {
+nonisolated enum JSONValue: Codable, Equatable, Hashable, Sendable {
   case string(String)
   case number(Double)
   case bool(Bool)

@@ -8,7 +8,7 @@ nonisolated struct FeedPage: Equatable, Sendable {
   var hasMore: Bool { nextCursor != nil }
 }
 
-nonisolated struct FeedChallenge: Identifiable, Equatable, Sendable {
+nonisolated struct FeedChallenge: Codable, Identifiable, Equatable, Hashable, Sendable {
   let id: Int
   let gameKey: String
   let title: String
@@ -72,7 +72,7 @@ nonisolated struct FeedChallenge: Identifiable, Equatable, Sendable {
   }
 }
 
-nonisolated struct ChallengeObjective: Equatable, Sendable {
+nonisolated struct ChallengeObjective: Codable, Equatable, Hashable, Sendable {
   let raw: [String: JSONValue]
 
   var type: String { raw["type"]?.stringValue ?? "" }
@@ -83,7 +83,7 @@ nonisolated struct ChallengeObjective: Equatable, Sendable {
   var minimumMilliseconds: Int? { raw["min_ms"]?.intValue }
 }
 
-nonisolated struct ChallengeMedia: Equatable, Sendable {
+nonisolated struct ChallengeMedia: Codable, Equatable, Hashable, Sendable {
   let tag: String
   let type: String
   let url: String
@@ -130,7 +130,7 @@ nonisolated struct ChallengeMedia: Equatable, Sendable {
   }
 }
 
-nonisolated struct FeedGameBundle: Equatable, Sendable {
+nonisolated struct FeedGameBundle: Codable, Equatable, Hashable, Sendable {
   let version: String
   let url: String
   let entry: String

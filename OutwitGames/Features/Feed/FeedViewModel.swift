@@ -86,7 +86,7 @@ final class FeedViewModel {
       alertMessageKey = "feed.game_unavailable"
       return
     }
-    coordinator.push(.challengePreview)
+    coordinator.push(.challenge(challenge))
   }
 
   func cancel() {

@@ -2,6 +2,7 @@ import SwiftUI
 
 struct AppRootView: View {
   @Environment(AppEnvironment.self) private var environment
+  @Environment(\.scenePhase) private var scenePhase
 
   var body: some View {
     @Bindable var coordinator = environment.coordinator
@@ -19,6 +20,19 @@ struct AppRootView: View {
         PendingFeatureView(title: "screen.profile.title")
       case .notificationSoftAsk:
         PendingFeatureView(title: "screen.notifications.title")
+      }
+    }
+    .task {
+      await environment.socketSession.start()
+      await environment.socketSession.setForeground(
+        AppSocketLifecyclePolicy.keepsConnection(for: scenePhase)
+      )
+    }
+    .onChange(of: scenePhase) { _, phase in
+      Task {
+        await environment.socketSession.setForeground(
+          AppSocketLifecyclePolicy.keepsConnection(for: phase)
+        )
       }
     }
   }
@@ -54,9 +68,21 @@ struct AppRootView: View {
       )
     case .rewards:
       PendingFeatureView(title: "screen.rewards.title")
-    case .challengePreview:
-      PendingFeatureView(title: "screen.challenge_preview.title")
+    case .challenge(let challenge):
+      ChallengeView(
+        challenge: challenge,
+        repository: environment.challengeRepository,
+        configuration: environment.configuration,
+        orientationController: environment.challengeOrientationController,
+        coordinator: environment.coordinator
+      )
     }
+  }
+}
+
+nonisolated enum AppSocketLifecyclePolicy {
+  static func keepsConnection(for phase: ScenePhase) -> Bool {
+    phase != .background
   }
 }
 

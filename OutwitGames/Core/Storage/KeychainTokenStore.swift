@@ -6,6 +6,7 @@ actor KeychainTokenStore: TokenStore {
   private let account = "authenticated-session"
   private let encoder = JSONEncoder()
   private let decoder = JSONDecoder()
+  private var sessionObservers: [UUID: AsyncStream<AuthSession?>.Continuation] = [:]
 
   init(service: String) {
     self.service = service
@@ -48,12 +49,14 @@ actor KeychainTokenStore: TokenStore {
       guard SecItemAdd(newItem as CFDictionary, nil) == errSecSuccess else {
         throw AppError.secureStorage
       }
+      publish(session)
       return
     }
 
     guard updateStatus == errSecSuccess else {
       throw AppError.secureStorage
     }
+    publish(session)
   }
 
   func saveUser(_ user: AuthUser) throws {
@@ -69,6 +72,29 @@ actor KeychainTokenStore: TokenStore {
     guard status == errSecSuccess || status == errSecItemNotFound else {
       throw AppError.secureStorage
     }
+    publish(nil)
+  }
+
+  func sessionChanges() -> AsyncStream<AuthSession?> {
+    let identifier = UUID()
+    let current = try? loadSession()
+    return AsyncStream { continuation in
+      continuation.yield(current)
+      sessionObservers[identifier] = continuation
+      continuation.onTermination = { [weak self] _ in
+        Task { await self?.removeObserver(identifier) }
+      }
+    }
+  }
+
+  private func publish(_ session: AuthSession?) {
+    for observer in sessionObservers.values {
+      observer.yield(session)
+    }
+  }
+
+  private func removeObserver(_ identifier: UUID) {
+    sessionObservers.removeValue(forKey: identifier)
   }
 
   private var baseQuery: [String: Any] {

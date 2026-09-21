@@ -18,7 +18,7 @@ struct LoginViewModelTests {
   }
 
   @Test
-  func OTPIsSentOnlyAfterTheExplicitAction() async {
+  func otpIsSentOnlyAfterTheExplicitAction() async {
     let context = makeContext()
     context.viewModel.updatePhone("9876543210")
 
@@ -145,7 +145,9 @@ struct LoginViewModelTests {
     context.viewModel.updatePhone("9876543210")
     await context.viewModel.sendOTP()
 
-    try await Task.sleep(for: .milliseconds(100))
+    for _ in 0..<100 where context.viewModel.resendSeconds > 0 {
+      try await Task.sleep(for: .milliseconds(10))
+    }
     #expect(context.viewModel.resendSeconds == 0)
 
     await context.viewModel.resendOTP()
