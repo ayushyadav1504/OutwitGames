@@ -5,23 +5,31 @@ struct OTPCodeField: View {
   @FocusState.Binding var isFocused: Bool
 
   var body: some View {
-    HStack(spacing: OutwitSpacing.x2) {
-      ForEach(0..<LoginViewModel.otpLength, id: \.self) { index in
-        digitBox(at: index)
+    ZStack {
+      HStack(spacing: OutwitSpacing.x2) {
+        ForEach(0..<LoginViewModel.otpLength, id: \.self) { index in
+          digitBox(at: index)
+        }
       }
-    }
-    .frame(maxWidth: .infinity)
-    .overlay {
-      TextField("login.otp.accessibility", text: $code)
+      .allowsHitTesting(false)
+
+      TextField("", text: $code)
         .keyboardType(.numberPad)
         .textContentType(.oneTimeCode)
+        .autocorrectionDisabled()
         .focused($isFocused)
         .foregroundStyle(.clear)
         .tint(.clear)
-        .opacity(0.02)
+        .frame(maxWidth: .infinity, minHeight: 56)
+        .contentShape(Rectangle())
         .accessibilityLabel("login.otp.accessibility")
         .accessibilityValue(code)
         .accessibilityIdentifier("login-otp-field")
+    }
+    .frame(maxWidth: .infinity)
+    .contentShape(Rectangle())
+    .onTapGesture {
+      isFocused = true
     }
   }
 

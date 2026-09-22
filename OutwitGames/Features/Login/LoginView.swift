@@ -1,7 +1,6 @@
 import SwiftUI
 
 struct LoginView: View {
-  @Environment(\.accessibilityReduceMotion) private var reduceMotion
   @State private var operationTask: Task<Void, Never>?
   @State private var viewModel: LoginViewModel
   @FocusState private var isPhoneFocused: Bool
@@ -56,17 +55,11 @@ struct LoginView: View {
     .toolbarBackground(.white, for: .navigationBar)
     .toolbarBackground(.visible, for: .navigationBar)
     .alert(item: $viewModel.alert, content: alert)
-    .task {
-      isPhoneFocused = true
-    }
-    .onChange(of: viewModel.step) { _, step in
-      if reduceMotion {
-        focus(step)
-      } else {
-        withAnimation(.easeInOut(duration: 0.2)) {
-          focus(step)
-        }
-      }
+    .task(id: viewModel.step == .otp) {
+      let step = viewModel.step
+      await Task.yield()
+      guard !Task.isCancelled else { return }
+      focus(step)
     }
     .onDisappear {
       operationTask?.cancel()

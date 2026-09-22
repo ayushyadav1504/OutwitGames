@@ -44,12 +44,13 @@ struct AuthRepositoryTests {
   }
 
   @Test
-  func existingAccountLoginReplacesTheGuestSession() async throws {
+  func existingAccountLoginReplacesTheGuestSessionAndRefreshesTheUsername() async throws {
     let registeredSession = Self.registeredSession
+    let refreshedUser = Self.registeredUser(id: 91, username: "existing-player")
     let store = InMemoryTokenStore(session: Self.guestSession)
     let client = LoginAPIClient(
       verifyResult: .success(registeredSession),
-      currentUserResult: .failure(.server())
+      currentUserResult: .success(refreshedUser)
     )
     let repository = makeRepository(client: client, store: store)
 
@@ -58,9 +59,10 @@ struct AuthRepositoryTests {
       code: "2468"
     )
 
-    #expect(user == registeredSession.user)
+    #expect(user == refreshedUser)
     #expect(await client.requestPaths == ["/auth/otp/verify", "/me"])
-    #expect(await store.loadSession() == registeredSession)
+    #expect(await store.loadSession()?.user == refreshedUser)
+    #expect(await store.loadSession()?.apiToken == registeredSession.apiToken)
   }
 
   @Test
