@@ -32,6 +32,14 @@ protocol AdConsentServicing: AnyObject {
 }
 
 @MainActor
+protocol InterstitialAdServing: AnyObject {
+  var isReady: Bool { get }
+
+  func load() async
+  func show() async -> Bool
+}
+
+@MainActor
 final class UnavailableRewardedAdService: RewardedAdServing {
   func initialize() async {}
   func load(_ placement: RewardedAdPlacement) async {}
@@ -52,4 +60,12 @@ final class PermissiveAdConsentService: AdConsentServicing {
 
   func prepare() async {}
   func presentPrivacyOptions() async throws {}
+}
+
+@MainActor
+final class UnavailableInterstitialAdService: InterstitialAdServing {
+  let isReady = false
+
+  func load() async {}
+  func show() async -> Bool { false }
 }

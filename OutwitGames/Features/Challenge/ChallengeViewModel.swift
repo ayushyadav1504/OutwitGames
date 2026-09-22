@@ -162,6 +162,11 @@ final class ChallengeViewModel {
     preloadTask = nil
   }
 
+  func routeDidDisappear(currentRoute: AppRoute) {
+    guard currentRoute != .challenge(challenge) else { return }
+    cancel()
+  }
+
   var shouldPauseGame: Bool {
     isExitPromptVisible || currentResult != nil
   }
@@ -192,6 +197,10 @@ final class ChallengeViewModel {
         let outcome = try await repository.waitForEnd(of: launch)
         try Task.checkCancellation()
         guard let self else { return }
+        hud = hud?.settled(
+          won: outcome.won,
+          runtimeMilliseconds: outcome.runtimeMilliseconds
+        )
         state = .result(launch, outcome)
         track(
           .challengeFinished(

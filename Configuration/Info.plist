@@ -88,6 +88,8 @@
 	<string>$(OUTWIT_REWARDED_MULTIPLIER_AD_UNIT_ID)</string>
 	<key>OUTWIT_REWARDED_RETRY_AD_UNIT_ID</key>
 	<string>$(OUTWIT_REWARDED_RETRY_AD_UNIT_ID)</string>
+	<key>OUTWIT_INTERSTITIAL_FEED_AD_UNIT_ID</key>
+	<string>$(OUTWIT_INTERSTITIAL_FEED_AD_UNIT_ID)</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>nunito_sans_black.ttf</string>

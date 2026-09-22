@@ -3,9 +3,11 @@ import SwiftUI
 struct ChallengeView: View {
   @Environment(\.scenePhase) private var scenePhase
   @State private var viewModel: ChallengeViewModel
+  @State private var ownsOrientationLease = false
 
   private let hostOrigin: URL
   private let orientationController: any ChallengeOrientationControlling
+  private let coordinator: AppCoordinator
 
   init(
     challenge: FeedChallenge,
@@ -19,6 +21,7 @@ struct ChallengeView: View {
   ) {
     hostOrigin = configuration.webOrigin
     self.orientationController = orientationController
+    self.coordinator = coordinator
     _viewModel = State(
       initialValue: ChallengeViewModel(
         repository: repository,
@@ -55,11 +58,8 @@ struct ChallengeView: View {
     .toolbar(.hidden, for: .navigationBar)
     .navigationBarBackButtonHidden(true)
     .task { await viewModel.start() }
-    .onAppear { orientationController.beginPortraitChallenge() }
-    .onDisappear {
-      viewModel.cancel()
-      orientationController.endPortraitChallenge()
-    }
+    .onAppear(perform: acquireOrientationLease)
+    .onDisappear(perform: handleDisappearance)
     .alert(
       "challenge.exit.title",
       isPresented: exitPromptBinding,
@@ -116,6 +116,7 @@ struct ChallengeView: View {
 
         if let outcome {
           ChallengeResultView(
+            launch: launch,
             outcome: outcome,
             multiplier: viewModel.multiplier,
             actionState: viewModel.resultActionState,
@@ -128,6 +129,7 @@ struct ChallengeView: View {
       }
     }
     .ignoresSafeArea(edges: .bottom)
+    .accessibilityIdentifier("challenge-gameplay")
   }
 
   private var exitPromptBinding: Binding<Bool> {
@@ -142,5 +144,25 @@ struct ChallengeView: View {
       get: { viewModel.actionErrorKey != nil },
       set: { if !$0 { viewModel.dismissActionError() } }
     )
+  }
+
+  private func acquireOrientationLease() {
+    guard !ownsOrientationLease else { return }
+    ownsOrientationLease = true
+    orientationController.beginPortraitChallenge()
+  }
+
+  private func handleDisappearance() {
+    Task { @MainActor in
+      // A Google full-screen ad may temporarily cover this SwiftUI route and
+      // trigger onDisappear. Yield so a real navigation pop can update the
+      // coordinator, then cancel only when this challenge actually left it.
+      await Task.yield()
+      let currentRoute = coordinator.path.last ?? coordinator.root
+      viewModel.routeDidDisappear(currentRoute: currentRoute)
+      guard currentRoute != .challenge(viewModel.challenge), ownsOrientationLease else { return }
+      ownsOrientationLease = false
+      orientationController.endPortraitChallenge()
+    }
   }
 }

@@ -15,6 +15,7 @@ struct FeedView: View {
     feedRepository: any FeedRepository,
     homeRepository: any HomeRepository,
     tokenStore: any TokenStore,
+    adGate: any FeedAdOpportunityReporting,
     coordinator: AppCoordinator
   ) {
     _viewModel = State(
@@ -22,6 +23,7 @@ struct FeedView: View {
         feedRepository: feedRepository,
         homeRepository: homeRepository,
         tokenStore: tokenStore,
+        adGate: adGate,
         coordinator: coordinator
       )
     )

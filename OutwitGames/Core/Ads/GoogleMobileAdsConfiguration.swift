@@ -1,11 +1,13 @@
 import Foundation
 
 nonisolated struct GoogleMobileAdsConfiguration: Equatable, Sendable {
+  let interstitialAdUnitID: String
   let multiplierAdUnitID: String
   let retryAdUnitID: String
 
   static func bundled(in bundle: Bundle = .main) -> GoogleMobileAdsConfiguration? {
     guard
+      let interstitial = value(named: "OUTWIT_INTERSTITIAL_FEED_AD_UNIT_ID", in: bundle),
       let multiplier = value(
         named: "OUTWIT_REWARDED_MULTIPLIER_AD_UNIT_ID",
         in: bundle
@@ -15,6 +17,7 @@ nonisolated struct GoogleMobileAdsConfiguration: Equatable, Sendable {
       return nil
     }
     return GoogleMobileAdsConfiguration(
+      interstitialAdUnitID: interstitial,
       multiplierAdUnitID: multiplier,
       retryAdUnitID: retry
     )

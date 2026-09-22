@@ -73,9 +73,9 @@ Before an App Store archive is submitted, replace these Xcode build settings wit
 the production iOS values:
 
 - `OUTWIT_GAD_APPLICATION_ID`
+- `OUTWIT_INTERSTITIAL_FEED_AD_UNIT_ID`
 - `OUTWIT_REWARDED_MULTIPLIER_AD_UNIT_ID`
 - `OUTWIT_REWARDED_RETRY_AD_UNIT_ID`
-- A future feed-interstitial build setting when that placement is implemented
 
 Do not submit a build that still contains Google's test identifiers. The app's
 `Info.plist` already includes Google's current recommended SKAdNetwork identifier
@@ -107,6 +107,6 @@ These values will be expressed in native iOS build configuration. The iOS projec
 - Android signing keystore or signing properties
 - Android manifest metadata and Gradle configuration
 
-The rewarded Google Mobile Ads integration and typed analytics boundary are now
-implemented. Firebase, Meta, PostHog, the feed-interstitial placement, and
-production AdMob identifiers remain separate approved integration checkpoints.
+The rewarded and feed-interstitial Google Mobile Ads integrations and typed
+analytics boundary are now implemented. Firebase, Meta, PostHog, and production
+AdMob identifiers remain separate approved integration checkpoints.

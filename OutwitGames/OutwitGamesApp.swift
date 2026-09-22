@@ -24,8 +24,10 @@ struct OutwitGamesApp: App {
             feedRepository: UITestFeedRepository(),
             homeRepository: UITestHomeRepository(),
             socketSession: UnavailableSocketSession(),
+            challengeRepository: UITestChallengeRepository(),
             adConsentService: PermissiveAdConsentService(),
             rewardedAdService: UnavailableRewardedAdService(),
+            interstitialAdService: UnavailableInterstitialAdService(),
             analytics: NoOpAnalyticsTracker()
           )
         )
@@ -45,6 +47,7 @@ struct OutwitGamesApp: App {
             socketSession: UnavailableSocketSession(),
             adConsentService: PermissiveAdConsentService(),
             rewardedAdService: UnavailableRewardedAdService(),
+            interstitialAdService: UnavailableInterstitialAdService(),
             analytics: NoOpAnalyticsTracker()
           )
         )
@@ -58,6 +61,7 @@ struct OutwitGamesApp: App {
             socketSession: UnavailableSocketSession(),
             adConsentService: PermissiveAdConsentService(),
             rewardedAdService: UnavailableRewardedAdService(),
+            interstitialAdService: UnavailableInterstitialAdService(),
             analytics: NoOpAnalyticsTracker()
           )
         )
@@ -155,6 +159,41 @@ struct OutwitGamesApp: App {
   private nonisolated struct UITestHomeRepository: HomeRepository {
     func loadWallet(forceRefresh: Bool) async throws -> WalletBalance {
       WalletBalance(coins: 240, elixir: 0)
+    }
+  }
+
+  private nonisolated struct UITestChallengeRepository: ChallengeRepository {
+    func start(_ challenge: FeedChallenge) async throws -> ChallengeLaunch {
+      ChallengeLaunch(
+        challenge: challenge,
+        gameID: "ui-game-\(challenge.id)",
+        socketToken: "ui-socket-token",
+        socketURL: URL(string: "wss://api.example.com/socket")!,
+        entryURL: URL(string: "https://games.example.com/ui-test/index.html")!,
+        objective: challenge.objective.raw,
+        level: nil,
+        rewardCoins: challenge.rewardCoins
+      )
+    }
+
+    func waitForEnd(of launch: ChallengeLaunch) async throws -> ChallengeOutcome {
+      try await Task.sleep(for: .seconds(30))
+      throw CancellationError()
+    }
+
+    func createAdSession(
+      for launch: ChallengeLaunch,
+      action: ChallengeAdAction
+    ) async throws -> ChallengeAdSession {
+      throw AppError.server()
+    }
+
+    func amplifyWin(_ launch: ChallengeLaunch, nonce: String) async throws -> ChallengeSpin {
+      throw AppError.server()
+    }
+
+    func retry(_ launch: ChallengeLaunch, nonce: String) async throws -> ChallengeLaunch {
+      throw AppError.server()
     }
   }
 #endif

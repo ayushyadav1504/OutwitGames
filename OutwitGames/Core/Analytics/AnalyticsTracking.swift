@@ -68,6 +68,16 @@ nonisolated struct AnalyticsEvent: Sendable {
       ]
     )
   }
+
+  static func feedInterstitialShown() -> AnalyticsEvent {
+    AnalyticsEvent(
+      name: "ad_shown",
+      properties: [
+        "ad_format": .string("interstitial"),
+        "placement": .string("feed"),
+      ]
+    )
+  }
 }
 
 nonisolated protocol AnalyticsTracking: Sendable {

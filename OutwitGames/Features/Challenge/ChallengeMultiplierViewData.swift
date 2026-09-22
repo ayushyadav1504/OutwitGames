@@ -18,6 +18,14 @@ nonisolated struct ChallengeMultiplierViewData: Equatable, Sendable {
 
   var totalCoins: Int { baseCoins + bonusCoins }
 
+  var selectedSegment: ChallengeWheelSegment { segments[selectedIndex] }
+
+  var isDoubled: Bool { baseCoins > 0 && totalCoins == baseCoins * 2 }
+
+  var reactionImageName: String {
+    bonusCoins > 0 ? "ChallengeNearMissHappy" : "ChallengeNearMissSad"
+  }
+
   var landingRotationDegrees: Double {
     guard !segments.isEmpty else { return 0 }
     let sweep = 360 / Double(segments.count)

@@ -31,6 +31,10 @@ struct AppRootView: View {
     .task {
       await environment.adConsentService.prepare()
       await environment.rewardedAdService.initialize()
+      environment.feedAdScheduler.start()
+    }
+    .onChange(of: feedAdSessionState, initial: true) { _, state in
+      environment.feedAdScheduler.update(state)
     }
     .onChange(of: scenePhase) { _, phase in
       Task {
@@ -68,6 +72,7 @@ struct AppRootView: View {
         feedRepository: environment.feedRepository,
         homeRepository: environment.homeRepository,
         tokenStore: environment.tokenStore,
+        adGate: environment.feedAdScheduler,
         coordinator: environment.coordinator
       )
     case .rewards:
@@ -83,7 +88,32 @@ struct AppRootView: View {
         orientationController: environment.challengeOrientationController,
         coordinator: environment.coordinator
       )
+      .id(challenge.id)
     }
+  }
+
+  private var feedAdSessionState: FeedAdSessionState {
+    let route = environment.coordinator.path.last ?? environment.coordinator.root
+    let isForeground = scenePhase == .active
+    let counts: Bool
+    let isInChallenge: Bool
+    switch route {
+    case .feed, .rewards:
+      counts = isForeground
+      isInChallenge = false
+    case .challenge:
+      counts = false
+      isInChallenge = true
+    default:
+      counts = false
+      isInChallenge = false
+    }
+    return FeedAdSessionState(
+      counts: counts,
+      showable: isForeground && route == .feed && environment.coordinator.sheet == nil,
+      isInChallenge: isInChallenge,
+      sessionRevision: environment.coordinator.rootRevision
+    )
   }
 }
 

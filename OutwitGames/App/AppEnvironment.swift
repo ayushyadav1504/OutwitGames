@@ -21,6 +21,8 @@ final class AppEnvironment {
   let challengeRepository: any ChallengeRepository
   let adConsentService: any AdConsentServicing
   let rewardedAdService: any RewardedAdServing
+  let interstitialAdService: any InterstitialAdServing
+  let feedAdScheduler: FeedAdScheduler
   let analytics: any AnalyticsTracking
   let challengeOrientationController: any ChallengeOrientationControlling
   let notificationPermissionRequester: any NotificationPermissionRequesting
@@ -39,6 +41,7 @@ final class AppEnvironment {
     challengeRepository: (any ChallengeRepository)? = nil,
     adConsentService: (any AdConsentServicing)? = nil,
     rewardedAdService: (any RewardedAdServing)? = nil,
+    interstitialAdService: (any InterstitialAdServing)? = nil,
     analytics: (any AnalyticsTracking)? = nil,
     challengeOrientationController: (any ChallengeOrientationControlling)? = nil,
     notificationPermissionRequester: (any NotificationPermissionRequesting)? = nil
@@ -72,16 +75,31 @@ final class AppEnvironment {
         tokenStore: resolvedTokenStore
       )
     let resolvedConsent = adConsentService ?? GoogleAdConsentService()
+    let resolvedAnalytics = analytics ?? OSLogAnalyticsTracker()
+    let adCadence = AdCadence()
+    let adsConfiguration = GoogleMobileAdsConfiguration.bundled()
     let resolvedRewardedAds: any RewardedAdServing
     if let rewardedAdService {
       resolvedRewardedAds = rewardedAdService
-    } else if let adsConfiguration = GoogleMobileAdsConfiguration.bundled() {
+    } else if let adsConfiguration {
       resolvedRewardedAds = GoogleRewardedAdService(
+        configuration: adsConfiguration,
+        consent: resolvedConsent,
+        onImpression: { adCadence.recordImpression() }
+      )
+    } else {
+      resolvedRewardedAds = UnavailableRewardedAdService()
+    }
+    let resolvedInterstitialAds: any InterstitialAdServing
+    if let interstitialAdService {
+      resolvedInterstitialAds = interstitialAdService
+    } else if let adsConfiguration {
+      resolvedInterstitialAds = GoogleInterstitialAdService(
         configuration: adsConfiguration,
         consent: resolvedConsent
       )
     } else {
-      resolvedRewardedAds = UnavailableRewardedAdService()
+      resolvedInterstitialAds = UnavailableInterstitialAdService()
     }
 
     self.settings = settings
@@ -112,7 +130,13 @@ final class AppEnvironment {
     self.socketSession = resolvedSocketSession
     self.adConsentService = resolvedConsent
     self.rewardedAdService = resolvedRewardedAds
-    self.analytics = analytics ?? OSLogAnalyticsTracker()
+    self.interstitialAdService = resolvedInterstitialAds
+    self.analytics = resolvedAnalytics
+    self.feedAdScheduler = FeedAdScheduler(
+      ads: resolvedInterstitialAds,
+      cadence: adCadence,
+      analytics: resolvedAnalytics
+    )
     self.challengeRepository =
       challengeRepository
       ?? DefaultChallengeRepository(

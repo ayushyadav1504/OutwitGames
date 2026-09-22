@@ -4,6 +4,7 @@ import GoogleMobileAds
 final class GoogleRewardedAdService: NSObject, RewardedAdServing {
   private let configuration: GoogleMobileAdsConfiguration
   private let consent: any AdConsentServicing
+  private let onImpression: @MainActor () -> Void
 
   private var ads: [RewardedAdPlacement: RewardedAd] = [:]
   private var loading: Set<RewardedAdPlacement> = []
@@ -13,10 +14,12 @@ final class GoogleRewardedAdService: NSObject, RewardedAdServing {
 
   init(
     configuration: GoogleMobileAdsConfiguration,
-    consent: any AdConsentServicing
+    consent: any AdConsentServicing,
+    onImpression: @escaping @MainActor () -> Void = {}
   ) {
     self.configuration = configuration
     self.consent = consent
+    self.onImpression = onImpression
   }
 
   func initialize() async {
@@ -79,6 +82,10 @@ final class GoogleRewardedAdService: NSObject, RewardedAdServing {
 }
 
 extension GoogleRewardedAdService: FullScreenContentDelegate {
+  func adDidRecordImpression(_ ad: FullScreenPresentingAd) {
+    onImpression()
+  }
+
   func adDidDismissFullScreenContent(_ ad: FullScreenPresentingAd) {
     finishPresentation(with: earnedReward ? .earned : .dismissed)
   }

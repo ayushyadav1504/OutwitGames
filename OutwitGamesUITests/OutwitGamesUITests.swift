@@ -65,7 +65,7 @@ final class OutwitGamesUITests: XCTestCase {
   }
 
   @MainActor
-  func testFeedPagesAndOpensChallengePlaceholder() {
+  func testFeedPagesAndOpensPlayableChallenge() {
     let app = XCUIApplication()
     app.launchArguments += [
       "-ui-testing-feed",
@@ -84,10 +84,10 @@ final class OutwitGamesUITests: XCTestCase {
     let startButton = secondCard.buttons["feed-start-challenge"]
     startButton.tap()
 
-    let pendingFeature = app.descendants(matching: .any)["pending-feature"]
-    if !pendingFeature.waitForExistence(timeout: 2) {
+    let gameplay = app.otherElements["challenge-gameplay"]
+    if !gameplay.waitForExistence(timeout: 2) {
       startButton.tap()
     }
-    XCTAssertTrue(pendingFeature.waitForExistence(timeout: 3))
+    XCTAssertTrue(gameplay.waitForExistence(timeout: 3))
   }
 }

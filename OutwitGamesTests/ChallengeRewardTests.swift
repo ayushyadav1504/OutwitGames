@@ -32,6 +32,35 @@ struct ChallengeRewardMapperTests {
       ])
     }
   }
+
+  @Test
+  func multiplierPresentationLandsOnTheServerSelectedSegment() {
+    let outcome = ChallengeOutcome(
+      won: true,
+      score: 12,
+      target: 10,
+      runtimeMilliseconds: 8_000,
+      metrics: [:],
+      coinsEarned: 5,
+      milestoneCoins: 0
+    )
+    let spin = ChallengeSpin(
+      selectedSegmentKey: "double",
+      rewardCoins: 5,
+      segments: [
+        ChallengeWheelSegment(key: "none", label: "+0", colorHex: "#444444"),
+        ChallengeWheelSegment(key: "double", label: "2x", colorHex: "#D9003A"),
+      ]
+    )
+
+    let presentation = ChallengeMultiplierViewData(outcome: outcome, spin: spin)
+
+    #expect(presentation.selectedIndex == 1)
+    #expect(presentation.selectedSegment.key == "double")
+    #expect(presentation.totalCoins == 10)
+    #expect(presentation.isDoubled)
+    #expect(presentation.landingRotationDegrees == 2_520)
+  }
 }
 
 struct ChallengeRewardRealtimeTests {
@@ -100,6 +129,53 @@ private actor RewardSocketSession: SocketSession {
 @MainActor
 struct ChallengeRewardViewModelTests {
   @Test
+  func rewardedActionSurvivesTheAdsTemporaryFullScreenCover() async {
+    let launch = Self.launch(gameID: "game-1")
+    let repository = WinningRewardChallengeRepository(launch: launch)
+    let ads = SuspendingRewardedAdFake()
+    let viewModel = ChallengeViewModel(
+      repository: repository,
+      rewardedAds: ads,
+      tokenStore: RewardTokenStore(),
+      analytics: NoOpAnalyticsTracker(),
+      coordinator: AppCoordinator(root: .feed),
+      challenge: launch.challenge
+    )
+
+    await viewModel.start()
+    await waitUntil { if case .result = viewModel.state { true } else { false } }
+    viewModel.multiplyReward()
+    await waitUntil { ads.isPresented }
+
+    viewModel.routeDidDisappear(currentRoute: .challenge(launch.challenge))
+    ads.complete(with: .earned)
+    await waitUntil { viewModel.multiplier != nil }
+
+    #expect(viewModel.multiplier?.selectedSegment.key == "double")
+    viewModel.cancel()
+  }
+
+  @Test
+  func earnedMultiplierAdPresentsTheServerSettledSpin() async {
+    let launch = Self.launch(gameID: "game-1")
+    let repository = WinningRewardChallengeRepository(launch: launch)
+    let ads = RewardedAdFake(outcome: .earned)
+    let viewModel = Self.viewModel(repository: repository, ads: ads, challenge: launch.challenge)
+
+    await viewModel.start()
+    await waitUntil { if case .result = viewModel.state { true } else { false } }
+    viewModel.multiplyReward()
+    await waitUntil { viewModel.multiplier != nil }
+
+    #expect(ads.shows == [.multiplier])
+    #expect(viewModel.multiplier?.selectedSegment.key == "double")
+    #expect(viewModel.multiplier?.totalCoins == 10)
+    #expect(await repository.actions == [.spin])
+    #expect(await repository.amplifyNonces == ["nonce-1"])
+    viewModel.cancel()
+  }
+
+  @Test
   func earnedAdAllowsServerRetry() async {
     let launch = Self.launch(gameID: "game-1")
     let nextLaunch = Self.launch(gameID: "game-2")
@@ -135,7 +211,7 @@ struct ChallengeRewardViewModelTests {
   }
 
   private static func viewModel(
-    repository: RewardChallengeRepository,
+    repository: any ChallengeRepository,
     ads: RewardedAdFake,
     challenge: FeedChallenge
   ) -> ChallengeViewModel {
@@ -182,6 +258,54 @@ struct ChallengeRewardViewModelTests {
   private func waitUntil(_ condition: @escaping @MainActor () -> Bool) async {
     for _ in 0..<200 where !condition() { await Task.yield() }
     #expect(condition())
+  }
+}
+
+private actor WinningRewardChallengeRepository: ChallengeRepository {
+  let launch: ChallengeLaunch
+  private(set) var actions: [ChallengeAdAction] = []
+  private(set) var amplifyNonces: [String] = []
+
+  init(launch: ChallengeLaunch) {
+    self.launch = launch
+  }
+
+  func start(_ challenge: FeedChallenge) -> ChallengeLaunch { launch }
+
+  func waitForEnd(of launch: ChallengeLaunch) -> ChallengeOutcome {
+    ChallengeOutcome(
+      won: true,
+      score: 12,
+      target: 10,
+      runtimeMilliseconds: 1_000,
+      metrics: [:],
+      coinsEarned: 5,
+      milestoneCoins: 0
+    )
+  }
+
+  func createAdSession(
+    for launch: ChallengeLaunch,
+    action: ChallengeAdAction
+  ) -> ChallengeAdSession {
+    actions.append(action)
+    return ChallengeAdSession(nonce: "nonce-1")
+  }
+
+  func amplifyWin(_ launch: ChallengeLaunch, nonce: String) -> ChallengeSpin {
+    amplifyNonces.append(nonce)
+    return ChallengeSpin(
+      selectedSegmentKey: "double",
+      rewardCoins: 5,
+      segments: [
+        ChallengeWheelSegment(key: "none", label: "+0", colorHex: "#444444"),
+        ChallengeWheelSegment(key: "double", label: "2x", colorHex: "#D9003A"),
+      ]
+    )
+  }
+
+  func retry(_ launch: ChallengeLaunch, nonce: String) throws -> ChallengeLaunch {
+    throw AppError.server()
   }
 }
 
@@ -245,6 +369,30 @@ private final class RewardedAdFake: RewardedAdServing {
   ) -> RewardedAdOutcome {
     shows.append(placement)
     return outcome
+  }
+}
+
+@MainActor
+private final class SuspendingRewardedAdFake: RewardedAdServing {
+  private var continuation: CheckedContinuation<RewardedAdOutcome, Never>?
+  private(set) var isPresented = false
+
+  func initialize() async {}
+  func load(_ placement: RewardedAdPlacement) async {}
+
+  func show(
+    _ placement: RewardedAdPlacement,
+    userID: String,
+    customData: String
+  ) async -> RewardedAdOutcome {
+    isPresented = true
+    return await withCheckedContinuation { continuation = $0 }
+  }
+
+  func complete(with outcome: RewardedAdOutcome) {
+    let continuation = continuation
+    self.continuation = nil
+    continuation?.resume(returning: outcome)
   }
 }
 

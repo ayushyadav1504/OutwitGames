@@ -86,6 +86,25 @@ struct FeedViewModelTests {
   }
 
   @Test
+  func changingCardsReportsAnInterstitialOpportunityOnce() async {
+    let gate = FeedAdGateSpy()
+    let context = makeContext(
+      pages: [.success(page(cards: [challenge(id: 1), challenge(id: 2)], cursor: nil))],
+      adGate: gate
+    )
+    await context.viewModel.loadIfNeeded()
+
+    await context.viewModel.selectPage(at: 0)
+    #expect(gate.cardChanges == 0)
+
+    await context.viewModel.selectPage(at: 1)
+    #expect(gate.cardChanges == 1)
+
+    await context.viewModel.selectPage(at: 2)
+    #expect(gate.cardChanges == 1)
+  }
+
+  @Test
   func objectiveCopyHighlightsBackendValues() {
     let objective = ChallengeObjective(
       raw: ["type": .string("min_score"), "target": .number(1_200)]
@@ -103,7 +122,8 @@ struct FeedViewModelTests {
   private func makeContext(
     pages: [Result<FeedPage, AppError>],
     coins: Int = 0,
-    delay: Duration? = nil
+    delay: Duration? = nil,
+    adGate: (any FeedAdOpportunityReporting)? = nil
   ) -> FeedTestContext {
     let feed = FeedRepositorySpy(results: pages, delay: delay)
     let home = HomeRepositoryStub(wallet: WalletBalance(coins: coins, elixir: 0))
@@ -127,6 +147,7 @@ struct FeedViewModelTests {
         feedRepository: feed,
         homeRepository: home,
         tokenStore: store,
+        adGate: adGate ?? NoOpFeedAdGate(),
         coordinator: coordinator
       ),
       feed: feed,
@@ -153,6 +174,15 @@ struct FeedViewModelTests {
       ),
       media: []
     )
+  }
+}
+
+@MainActor
+private final class FeedAdGateSpy: FeedAdOpportunityReporting {
+  private(set) var cardChanges = 0
+
+  func cardChanged() {
+    cardChanges += 1
   }
 }
 

@@ -59,6 +59,84 @@ struct ChallengeOutcomeAndHUDTests {
     #expect(updated.targetText == "1:20")
   }
 
+  @Test
+  func scoreHudMovesThroughNearTargetAndSuccessPhases() {
+    let initial = ChallengeHUDState.initial(
+      launch: launch(objective: ["type": .string("min_score"), "target": .number(10)])
+    )
+
+    let nearTarget = initial.applying(.score(9))
+    let success = nearTarget.applying(.score(10))
+
+    #expect(nearTarget.phase == .nearTarget)
+    #expect(success.phase == .success)
+  }
+
+  @Test
+  func compositeHudTracksPrimaryMetricAndTimeWarning() {
+    let initial = ChallengeHUDState.initial(
+      launch: launch(objective: [
+        "type": .string("composite"),
+        "terms": .array([
+          .object([
+            "type": .string("collect_count"),
+            "metric": .string("stars"),
+            "target": .number(10),
+          ]),
+          .object(["type": .string("time_limit"), "max_ms": .number(30_000)]),
+        ]),
+      ])
+    )
+    let updated = initial.applying(
+      .state(
+        values: [
+          "metrics": .object(["stars": .number(7)]),
+          "time": .number(21),
+        ],
+        requestID: "native-1"
+      )
+    )
+
+    #expect(updated.mode == .composite)
+    #expect(updated.valueText == "7")
+    #expect(updated.timeText == "0:21")
+    #expect(updated.timeLimitText == "0:30")
+    #expect(updated.phase == .warning)
+  }
+
+  @Test
+  func nearMissPresentationUsesThePrimaryCompositeGoal() {
+    let challengeLaunch = launch(objective: [
+      "type": .string("composite"),
+      "terms": .array([
+        .object([
+          "type": .string("collect_count"),
+          "metric": .string("stars"),
+          "target": .number(10),
+        ]),
+        .object(["type": .string("time_limit"), "max_ms": .number(30_000)]),
+      ]),
+    ])
+    let outcome = ChallengeOutcome(
+      won: false,
+      score: nil,
+      target: nil,
+      runtimeMilliseconds: 22_000,
+      metrics: ["stars": 8],
+      coinsEarned: 0,
+      milestoneCoins: 0
+    )
+
+    let presentation = ChallengeNearMissViewData.make(
+      launch: challengeLaunch,
+      outcome: outcome
+    )
+
+    #expect(presentation.metric == .score(8))
+    #expect(presentation.goal == .collect(count: 10, metric: "stars"))
+    #expect(presentation.rewardCoins == 5)
+  }
+
   private func launch(objective: [String: JSONValue]) -> ChallengeLaunch {
     ChallengeLaunch(
       challenge: FeedChallenge(

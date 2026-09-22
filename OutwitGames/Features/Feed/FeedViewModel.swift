@@ -18,6 +18,7 @@ final class FeedViewModel {
   private let feedRepository: any FeedRepository
   private let homeRepository: any HomeRepository
   private let tokenStore: any TokenStore
+  private let adGate: any FeedAdOpportunityReporting
   private let coordinator: AppCoordinator
 
   private var revision = 0
@@ -39,11 +40,13 @@ final class FeedViewModel {
     feedRepository: any FeedRepository,
     homeRepository: any HomeRepository,
     tokenStore: any TokenStore,
+    adGate: any FeedAdOpportunityReporting = NoOpFeedAdGate(),
     coordinator: AppCoordinator
   ) {
     self.feedRepository = feedRepository
     self.homeRepository = homeRepository
     self.tokenStore = tokenStore
+    self.adGate = adGate
     self.coordinator = coordinator
   }
 
@@ -59,7 +62,10 @@ final class FeedViewModel {
   }
 
   func selectPage(at index: Int) async {
-    currentIndex = min(max(index, 0), cards.count)
+    let nextIndex = min(max(index, 0), cards.count)
+    let didChangeCard = nextIndex != currentIndex && nextIndex < cards.count
+    currentIndex = nextIndex
+    if didChangeCard { adGate.cardChanged() }
     guard cards.count - currentIndex - 1 <= Self.prefetchRemaining else { return }
     await loadMore()
   }
