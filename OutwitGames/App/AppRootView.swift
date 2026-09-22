@@ -17,7 +17,16 @@ struct AppRootView: View {
     .sheet(item: $coordinator.sheet) { sheet in
       switch sheet {
       case .profile:
-        ProfilePlaceholderView(consent: environment.adConsentService)
+        ProfileView(
+          settings: environment.settings,
+          tokenStore: environment.tokenStore,
+          authRepository: environment.authRepository,
+          notifications: environment.notificationPermissionRequester,
+          consent: environment.adConsentService,
+          analytics: environment.analytics,
+          configuration: environment.configuration,
+          coordinator: environment.coordinator
+        )
       case .notificationSoftAsk:
         PendingFeatureView(title: "screen.notifications.title")
       }
@@ -122,30 +131,6 @@ struct AppRootView: View {
       isInChallenge: isInChallenge,
       sessionRevision: environment.coordinator.rootRevision
     )
-  }
-}
-
-private struct ProfilePlaceholderView: View {
-  let consent: any AdConsentServicing
-  @State private var privacyOptionsRequired = false
-
-  var body: some View {
-    VStack(spacing: OutwitSpacing.x4) {
-      ContentUnavailableView(
-        "screen.profile.title",
-        systemImage: "person.crop.circle",
-        description: Text("screen.pending.description")
-      )
-      if privacyOptionsRequired {
-        Button("privacy.options") {
-          Task { try? await consent.presentPrivacyOptions() }
-        }
-        .buttonStyle(.outwitPrimary)
-        .frame(maxWidth: 320)
-      }
-    }
-    .padding(OutwitSpacing.pageGutter)
-    .task { privacyOptionsRequired = consent.isPrivacyOptionsRequired }
   }
 }
 

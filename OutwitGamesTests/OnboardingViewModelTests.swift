@@ -130,10 +130,16 @@ private actor NotificationRequesterStub: NotificationPermissionRequesting {
     self.result = result
   }
 
+  func authorizationState() -> NotificationAuthorizationState {
+    .notDetermined
+  }
+
   func requestAuthorization() async throws -> Bool {
     requestCount += 1
     return try result.get()
   }
+
+  func openSettings() {}
 }
 
 private enum NotificationTestError: Error {

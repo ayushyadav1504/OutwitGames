@@ -255,4 +255,7 @@ private nonisolated struct PreviewAuthRepository: AuthRepository {
   func loginToExistingAccount(phone: String, code: String) async throws -> AuthUser {
     try await verifyOTP(phone: phone, code: code)
   }
+
+  func signOut() async throws {}
+  func deleteAccount() async throws {}
 }

@@ -224,6 +224,9 @@ private actor LoginRepositorySpy: AuthRepository {
     return Self.registeredUser
   }
 
+  func signOut() async throws {}
+  func deleteAccount() async throws {}
+
   private static let registeredUser = AuthUser(
     id: 91,
     kind: "registered",

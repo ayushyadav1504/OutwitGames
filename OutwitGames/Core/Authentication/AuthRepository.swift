@@ -4,6 +4,8 @@ nonisolated protocol AuthRepository: Sendable {
   func sendOTP(to nationalPhoneNumber: String) async throws
   func verifyOTP(phone: String, code: String) async throws -> AuthUser
   func loginToExistingAccount(phone: String, code: String) async throws -> AuthUser
+  func signOut() async throws
+  func deleteAccount() async throws
 }
 
 nonisolated struct DefaultAuthRepository: AuthRepository {
@@ -43,6 +45,23 @@ nonisolated struct DefaultAuthRepository: AuthRepository {
     // The complete session replacement below prevents the guest credentials
     // from surviving this account switch.
     try await loginWithOTP(phone: indiaE164(phone), code: code)
+  }
+
+  func signOut() async throws {
+    try await tokenStore.clear()
+  }
+
+  func deleteAccount() async throws {
+    try await apiClient.send(DeleteAccountRequest.make())
+    // The backend has already scheduled deletion. A Keychain cleanup failure
+    // must not make the destructive request look retryable to the player.
+    do {
+      try await tokenStore.clear()
+    } catch is CancellationError {
+      throw CancellationError()
+    } catch {
+      // Local cleanup is best-effort after the server accepts deletion.
+    }
   }
 
   private func upgradeGuest(phone: String, code: String) async throws -> AuthUser {

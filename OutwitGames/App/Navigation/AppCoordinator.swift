@@ -37,6 +37,15 @@ final class AppCoordinator {
     reset(to: .feed)
   }
 
+  func openLoginFromProfile() {
+    sheet = nil
+    push(.login)
+  }
+
+  func restartAfterAccountExit() {
+    reset(to: .splash)
+  }
+
   func back() {
     guard !path.isEmpty else { return }
     path.removeLast()

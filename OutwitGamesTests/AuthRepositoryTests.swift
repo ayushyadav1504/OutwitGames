@@ -1,3 +1,4 @@
+import Foundation
 import Testing
 
 @testable import OutwitGames
@@ -99,6 +100,43 @@ struct AuthRepositoryTests {
     #expect(await store.loadSession() == TestSessions.original)
   }
 
+  @Test
+  func signOutClearsTheLocalSessionWithoutCallingTheBackend() async throws {
+    let store = InMemoryTokenStore(session: TestSessions.original)
+    let client = LoginAPIClient()
+    let repository = makeRepository(client: client, store: store)
+
+    try await repository.signOut()
+
+    #expect(await store.loadSession() == nil)
+    #expect(await client.requestPaths.isEmpty)
+  }
+
+  @Test
+  func accountDeletionClearsTheSessionOnlyAfterBackendSuccess() async throws {
+    let store = InMemoryTokenStore(session: TestSessions.original)
+    let client = LoginAPIClient(deleteResult: .success(()))
+    let repository = makeRepository(client: client, store: store)
+
+    try await repository.deleteAccount()
+
+    #expect(await client.requestPaths == ["/account"])
+    #expect(await store.loadSession() == nil)
+  }
+
+  @Test
+  func deleteAccountRequestValidatesTheBackendStatus() throws {
+    let request = DeleteAccountRequest.make()
+
+    #expect(request.path == "/account")
+    #expect(request.method == .delete)
+    #expect(request.requiresAuthentication)
+    try request.decodeResponse(from: Data(#"{"status":"deletion_scheduled"}"#.utf8))
+    #expect(throws: AppError.parsing) {
+      try request.decodeResponse(from: Data(#"{"status":"unexpected"}"#.utf8))
+    }
+  }
+
   private func makeRepository(
     client: LoginAPIClient,
     store: InMemoryTokenStore
@@ -151,16 +189,19 @@ private actor LoginAPIClient: APIClient {
   private let upgradeResult: Result<AuthUser, AppError>
   private let verifyResult: Result<AuthSession, AppError>
   private let currentUserResult: Result<AuthUser, AppError>
+  private let deleteResult: Result<Void, AppError>
   private(set) var requestPaths: [String] = []
 
   init(
     upgradeResult: Result<AuthUser, AppError> = .failure(.parsing),
     verifyResult: Result<AuthSession, AppError> = .failure(.parsing),
-    currentUserResult: Result<AuthUser, AppError> = .failure(.parsing)
+    currentUserResult: Result<AuthUser, AppError> = .failure(.parsing),
+    deleteResult: Result<Void, AppError> = .failure(.parsing)
   ) {
     self.upgradeResult = upgradeResult
     self.verifyResult = verifyResult
     self.currentUserResult = currentUserResult
+    self.deleteResult = deleteResult
   }
 
   func send<Response: Sendable>(_ request: APIRequest<Response>) async throws -> Response {
@@ -176,6 +217,8 @@ private actor LoginAPIClient: APIClient {
       value = try verifyResult.get()
     case "/me":
       value = try currentUserResult.get()
+    case "/account":
+      value = try deleteResult.get()
     default:
       throw AppError.invalidRequest
     }

@@ -22,6 +22,14 @@ nonisolated struct AppConfiguration: Equatable, Sendable {
     return components.url ?? apiBaseURL
   }
 
+  var privacyPolicyURL: URL {
+    webOrigin.appending(path: "privacy-policy")
+  }
+
+  var termsAndConditionsURL: URL {
+    webOrigin.appending(path: "terms-and-conditions")
+  }
+
   init(
     environment: Environment,
     apiBaseURL: String,

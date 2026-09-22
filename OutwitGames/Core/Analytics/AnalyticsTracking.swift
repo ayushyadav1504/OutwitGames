@@ -79,6 +79,34 @@ nonisolated struct AnalyticsEvent: Sendable {
     )
   }
 
+  static func loginInitiated(source: String) -> AnalyticsEvent {
+    AnalyticsEvent(
+      name: "login_initiated",
+      properties: ["source": .string(source)]
+    )
+  }
+
+  static func languageSelected(_ language: AppLanguage, source: String) -> AnalyticsEvent {
+    AnalyticsEvent(
+      name: "language_selected",
+      properties: [
+        "language": .string(language == .hindi ? "Hindi" : "English"),
+        "source": .string(source),
+      ]
+    )
+  }
+
+  static func notificationPermissionGiven(source: String) -> AnalyticsEvent {
+    AnalyticsEvent(
+      name: "notification_permission_given",
+      properties: ["source": .string(source)]
+    )
+  }
+
+  static func logoutDone() -> AnalyticsEvent {
+    AnalyticsEvent(name: "logout_done", properties: [:])
+  }
+
   static func rewardsViewed(
     source: RewardsEntrySource,
     tab: RewardsTab,

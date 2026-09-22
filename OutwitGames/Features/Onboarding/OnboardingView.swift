@@ -96,5 +96,7 @@ struct OnboardingView: View {
 private nonisolated struct PreviewNotificationPermissionRequester:
   NotificationPermissionRequesting
 {
+  func authorizationState() async -> NotificationAuthorizationState { .notDetermined }
   func requestAuthorization() async throws -> Bool { true }
+  func openSettings() async {}
 }
