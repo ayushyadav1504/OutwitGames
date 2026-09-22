@@ -17,6 +17,8 @@ final class AppEnvironment {
   let authRepository: any AuthRepository
   let feedRepository: any FeedRepository
   let homeRepository: any HomeRepository
+  let rewardsRepository: any RewardsRepository
+  let referralsRepository: any ReferralsRepository
   let socketSession: any SocketSession
   let challengeRepository: any ChallengeRepository
   let adConsentService: any AdConsentServicing
@@ -37,6 +39,8 @@ final class AppEnvironment {
     authRepository: (any AuthRepository)? = nil,
     feedRepository: (any FeedRepository)? = nil,
     homeRepository: (any HomeRepository)? = nil,
+    rewardsRepository: (any RewardsRepository)? = nil,
+    referralsRepository: (any ReferralsRepository)? = nil,
     socketSession: (any SocketSession)? = nil,
     challengeRepository: (any ChallengeRepository)? = nil,
     adConsentService: (any AdConsentServicing)? = nil,
@@ -127,6 +131,12 @@ final class AppEnvironment {
     self.homeRepository =
       homeRepository
       ?? DefaultHomeRepository(apiClient: resolvedAPIClient, tokenStore: resolvedTokenStore)
+    self.rewardsRepository =
+      rewardsRepository
+      ?? DefaultRewardsRepository(apiClient: resolvedAPIClient)
+    self.referralsRepository =
+      referralsRepository
+      ?? DefaultReferralsRepository(apiClient: resolvedAPIClient)
     self.socketSession = resolvedSocketSession
     self.adConsentService = resolvedConsent
     self.rewardedAdService = resolvedRewardedAds

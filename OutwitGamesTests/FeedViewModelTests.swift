@@ -77,7 +77,7 @@ struct FeedViewModelTests {
     await context.viewModel.loadIfNeeded()
 
     context.viewModel.openRewards()
-    #expect(context.coordinator.path == [.rewards])
+    #expect(context.coordinator.path == [.rewards(.home)])
 
     context.coordinator.back()
     context.viewModel.start(challenge(id: 1))

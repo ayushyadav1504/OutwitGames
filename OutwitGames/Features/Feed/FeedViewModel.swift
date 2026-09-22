@@ -84,7 +84,7 @@ final class FeedViewModel {
   }
 
   func openRewards() {
-    coordinator.push(.rewards)
+    coordinator.push(.rewards(.home))
   }
 
   func start(_ challenge: FeedChallenge) {

@@ -12,9 +12,9 @@ struct AppCoordinatorTests {
 
     coordinator.push(.onboarding)
     coordinator.push(.login)
-    coordinator.replaceTop(with: .rewards)
+    coordinator.replaceTop(with: .rewards(.home))
 
-    #expect(coordinator.path == [.onboarding, .rewards])
+    #expect(coordinator.path == [.onboarding, .rewards(.home)])
 
     coordinator.back()
 

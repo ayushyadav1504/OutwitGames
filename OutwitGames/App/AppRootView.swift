@@ -75,8 +75,16 @@ struct AppRootView: View {
         adGate: environment.feedAdScheduler,
         coordinator: environment.coordinator
       )
-    case .rewards:
-      PendingFeatureView(title: "screen.rewards.title")
+    case .rewards(let source):
+      RewardsView(
+        rewardsRepository: environment.rewardsRepository,
+        referralsRepository: environment.referralsRepository,
+        homeRepository: environment.homeRepository,
+        tokenStore: environment.tokenStore,
+        analytics: environment.analytics,
+        coordinator: environment.coordinator,
+        entrySource: source
+      )
     case .challenge(let challenge):
       ChallengeView(
         challenge: challenge,

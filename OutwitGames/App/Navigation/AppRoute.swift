@@ -4,6 +4,6 @@ enum AppRoute: Codable, Hashable, Sendable {
   case onboarding
   case login
   case feed
-  case rewards
+  case rewards(RewardsEntrySource)
   case challenge(FeedChallenge)
 }
